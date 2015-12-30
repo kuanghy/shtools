@@ -1,0 +1,98 @@
+###############################################################
+#     Filename @  .userc
+#       Author @  Huoty
+#  Create date @  2015-06-02 21:09:01
+#  Description @  Bash user configuration
+###############################################################
+
+
+#### 更改提示符样式
+export PS1="\[\033[01;32m\]\u\[\033[01;31m\]\$\[\033[01;36m\][\W]\[\033[01;32m\] =>\[\033[00m\] "
+
+
+#### 开启终端 256 色
+if [ "$TERM" == "xterm" ]; then
+    export TERM=xterm-256color
+fi
+
+
+#### History 历史命令相关设置
+export HISTTIMEFORMAT='%F %T  '
+
+alias h1='history 10' 
+alias h2='history 20' 
+alias h3='history 30'
+
+# 在该命令前加上一个空格来指示history忽略这条命令
+#export HISTCONTROL=ignorespace  
+
+# 让history在存储时忽略指定指令
+export HISTIGNORE="pwd:ls:ll:ls –ltr:history:h1:h2:h3"  
+
+
+##### Alias and function
+
+alias clang='clang-3.4'
+
+# 用超级用户打开文件
+#alias svi="echo 181716 | sudo -S vim"  # 存在问题
+alias svi="sudo vim"
+alias sgedit="echo 181716 | sudo -S gedit"
+
+# 生成 30 位随机密码
+alias genpasswd="strings /dev/urandom | grep -o '[[:alnum:]]' | head -n 30 | tr -d '\n'; echo" 
+
+# 搜索历史命令
+alias histg="history | grep"
+
+# 搜索进程
+alias psg="ps aux | grep"
+
+# 以树形结构递归地显示目录结构
+alias lsr="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
+
+#下载整个网站
+alias websiteget="wget --random-wait -r -p -e robots=off -U mozilla"
+## help: websiteget [URL]
+
+# 显示出哪个应用程序连接到网络
+alias listen="lsof -P -i -n" 
+
+# 获取公网IP地址和主机名
+alias ipinfo="curl ifconfig.me && curl ifconfig.me/host"
+
+# 只为有趣 
+alias busy="cat /dev/urandom | hexdump -C | grep 'ca fe'" 
+
+#  创建目录并进入
+mcd() { mkdir -p "$1"; cd "$1"; }
+
+# 进入目录并列出目录下的文件
+cdl() { cd "$1"; ls; }
+
+# 文件 MD5 校验
+md5check() { md5sum "$1" | grep "$2"; }
+## help: md5check [file] [key]
+
+# 解压任何类型的文档
+extract() { 
+    if [ -f $1 ] ; then 
+      case $1 in 
+        *.tar.bz2)   tar xjvf $1    ;; 
+        *.tar.gz)    tar xzvf $1    ;; 
+        *.bz2)       bunzip2 $1     ;; 
+        *.rar)       unrar e $1     ;; 
+        *.gz)        gunzip $1      ;; 
+        *.tar)       tar xvf $1     ;; 
+        *.tbz2)      tar xjvf $1    ;; 
+        *.tgz)       tar xzvf $1    ;; 
+        *.zip)       unzip $1       ;; 
+        *.Z)         uncompress $1  ;; 
+        *.7z)        7z x $1        ;; 
+        *)     echo "'$1' cannot be extracted via extract()" ;; 
+         esac 
+     else 
+         echo "'$1' is not a valid file" 
+     fi 
+}
+## help: extract [archive file]
