@@ -32,8 +32,6 @@ export HISTIGNORE="pwd:ls:ll:ls –ltr:history:h1:h2:h3"
 
 ##### Alias and function
 
-alias clang='clang-3.4'
-
 # 用超级用户打开文件
 #alias svi="echo 181716 | sudo -S vim"  # 存在问题
 alias svi="sudo vim"
@@ -60,6 +58,9 @@ alias listen="lsof -P -i -n"
 
 # 获取公网IP地址和主机名
 alias ipinfo="curl ifconfig.me && curl ifconfig.me/host"
+
+# 获取操作系统位数
+alias osbit="getconf LONG_BIT"
 
 # 只为有趣 
 alias busy="cat /dev/urandom | hexdump -C | grep 'ca fe'" 
