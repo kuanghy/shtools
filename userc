@@ -65,6 +65,9 @@ alias osbit="getconf LONG_BIT"
 # 只为有趣 
 alias busy="cat /dev/urandom | hexdump -C | grep 'ca fe'" 
 
+# ssh server
+alias goserver="ssh xxx@xxxxxxx"
+
 #  创建目录并进入
 mcd() { mkdir -p "$1"; cd "$1"; }
 
@@ -97,3 +100,8 @@ extract() {
      fi 
 }
 ## help: extract [archive file]
+
+
+#### Content search
+# 在当前目录的 Python 代码中查找字符串，search in py.
+alias sipy="find . -name '*.py' | xargs grep -n --color"
