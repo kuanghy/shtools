@@ -1,0 +1,44 @@
+[user]
+	email = sudohuoty@163.com
+	name = Huayong Kuang
+[credential]
+	helper = store
+[core]
+	editor = vim
+    safecrlf = true
+    filename = true
+[gui]
+	recentrepo = /home/huoty/kuankelib
+[branch]
+	autosetuprebase = always
+[rebase]
+	stat = true
+[alias]
+    df = diff
+	mg = merge --no-ff
+    co = checkout
+    ci = commit
+    cia = commit --amend
+    fe = fetch -n
+    pl = pull --rebase
+    ps = push
+    cp = cherry-pick
+    rb = rebase
+	new = diff HEAD~...HEAD
+	see = log -p -n 1
+	rc = rebase --continue
+    ri = rebase -i
+	mt = mergetool
+	br = branch
+	rh = reset --hard
+	rf = rebase FETCH_HEAD
+    rs = reset --soft
+	rsh1 = reset --soft HEAD~
+    st = status
+    sb = submodule
+    su = submodule update  --recursive --init
+
+    check = clean -xdfn
+    stu = status -uno
+    cc = cherry-pick --continue
+    graph = log --pretty=fuller --graph
