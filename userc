@@ -1,13 +1,17 @@
-###############################################################
+#########################################################################
 #     Filename @  .userc
 #       Author @  Huoty
 #  Create date @  2015-06-02 21:09:01
 #  Description @  Bash user configuration
-###############################################################
+#########################################################################
 
 
 #### 更改提示符样式
-export PS1="\[\033[01;32m\]\u\[\033[01;31m\]\$\[\033[01;36m\][\W]\[\033[01;32m\] =>\[\033[00m\] "
+if [ "$USER" == "root" ]; then
+    export PS1="\[\033[01;35m\]\u\[\033[01;31m\]\$\[\033[01;36m\][\W]\[\033[01;32m\] >>\[\033[00m\] "
+else
+    export PS1="\[\033[01;32m\]\u\[\033[01;31m\]\$\[\033[01;36m\][\W]\[\033[01;32m\] =>\[\033[00m\] "
+fi
 
 
 #### 开启终端 256 色
@@ -30,7 +34,7 @@ alias h3='history 30'
 export HISTIGNORE="pwd:ls:ll:ls –ltr:history:h1:h2:h3"  
 
 
-##### Alias and function
+#### Alias and function
 
 # 用超级用户打开文件
 #alias svi="echo 181716 | sudo -S vim"  # 存在问题
@@ -102,6 +106,12 @@ extract() {
 ## help: extract [archive file]
 
 
+#### Switch python environment
+alias chenv="source activate"
+alias deact="source deactivate"
+
+
 #### Content search
 # 在当前目录的 Python 代码中查找字符串，search in py.
 alias sipy="find . -name '*.py' | xargs grep -n --color"
+
