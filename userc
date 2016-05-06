@@ -34,7 +34,7 @@ alias h3='history 30'
 export HISTIGNORE="pwd:ls:ll:ls –ltr:history:h1:h2:h3"  
 
 
-#### Alias and function
+#### Alias command
 
 # 用超级用户打开文件
 #alias svi="echo 181716 | sudo -S vim"  # 存在问题
@@ -51,7 +51,7 @@ alias histg="history | grep"
 alias psg="ps aux | grep"
 
 # 以树形结构递归地显示目录结构
-alias lsr="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
+alias lsr="ls -R | grep :$ | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
 
 #下载整个网站
 alias websiteget="wget --random-wait -r -p -e robots=off -U mozilla"
@@ -69,8 +69,17 @@ alias osbit="getconf LONG_BIT"
 # 只为有趣 
 alias busy="cat /dev/urandom | hexdump -C | grep 'ca fe'" 
 
+# 获取所有用户和组
+alias alluser="cut -d : -f 1 /etc/passwd | sort | xargs"
+alias allgroup="cut -d : -f 1 /etc/group | sort | xargs"
+alias bashusers="cat /etc/passwd | grep /bin/bash | cut -d : -f 1 | sort | xargs"
+alias loginusers="cat /etc/passwd | grep -v /sbin/nologin | cut -d : -f 1 | sort | xargs"
+
 # ssh server
-alias goserver="ssh xxx@xxxxxxx"
+#alias goserver="ssh xxx@xxxxxxx"
+
+
+#### Function command
 
 #  创建目录并进入
 mcd() { mkdir -p "$1"; cd "$1"; }

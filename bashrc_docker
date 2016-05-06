@@ -1,10 +1,12 @@
 # Some useful commands to use docker.
-# Author: yeasy@github
-# Created:2014-09-25
+# Author: Huoty <sudohuoty@gmail.com>
+# Created: 2014-09-25
 
-alias dk-pid="sudo docker inspect --format '{{.State.Pid}}'"
-alias dk-ip="sudo docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
-alias dk-clear="docker ps -aq | xargs docker rm"
+alias docker-pid="docker inspect --format '{{.State.Pid}}'"
+alias docker-ip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
+alias docker-clear="docker ps -aq | xargs docker rm"
+
+docker-bash() { docker run -it $1 /bin/bash; }
 
 #the implementation refs from https://github.com/jpetazzo/nsenter/blob/master/docker-enter
 function docker-enter() {
