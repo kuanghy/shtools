@@ -41,9 +41,6 @@ export HISTIGNORE="pwd:ls:ll:ls –ltr:history:h1:h2:h3"
 alias svi="sudo vim"
 alias sgedit="echo 181716 | sudo -S gedit"
 
-# 生成 30 位随机密码
-alias genpasswd="strings /dev/urandom | grep -o '[[:alnum:]]' | head -n 30 | tr -d '\n'; echo" 
-
 # 搜索历史命令
 alias histg="history | grep"
 
@@ -91,9 +88,23 @@ cdl() { cd "$1"; ls; }
 md5check() { md5sum "$1" | grep "$2"; }
 ## help: md5check [file] [key]
 
+# 生成随机密码
+genpasswd() {
+    if [ $# -gt 1 ]; then
+        echo "Usage: genpasswd <number>"
+    elif [ $# -eq 0 ]; then
+        strings /dev/urandom | grep -o '[[:alnum:]]' | head -n 16 | tr -d '\n'; echo
+    else
+        strings /dev/urandom | grep -o '[[:alnum:]]' | head -n "$1" | tr -d '\n'; echo
+    fi
+}
+
+# 生成一个只用左手便可输入的随机密码
+lrandpw() { < /dev/urandom tr -dc '12345!@#$%qwertQWERTasdfgASDFGzxcvbZXCVB' | head -c${1:-'$1'};echo; }
+
 # 解压任何类型的文档
 extract() { 
-    if [ -f $1 ] ; then 
+    if [ -f $1 ]; then 
       case $1 in 
         *.tar.bz2)   tar xjvf $1    ;; 
         *.tar.gz)    tar xzvf $1    ;; 
