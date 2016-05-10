@@ -45,7 +45,7 @@ alias sgedit="echo 181716 | sudo -S gedit"
 alias histg="history | grep"
 
 # 搜索进程
-alias psg="ps aux | grep"
+alias psg="ps aux | grep -v grep | grep"
 
 # 以树形结构递归地显示目录结构
 alias lsr="ls -R | grep :$ | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
