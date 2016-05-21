@@ -75,6 +75,13 @@ alias loginusers="cat /etc/passwd | grep -v /sbin/nologin | cut -d : -f 1 | sort
 # ssh server
 #alias goserver="ssh xxx@xxxxxxx"
 
+# 获取占用CPU最高的前十个进程
+alias topcpu="ps aux | head -1; ps aux | grep -v PID | sort -rn -k +3 | head"
+
+# 获取占用内存最高的前十个进程
+alias topmem="ps aux | head -1; ps aux | grep -v PID | sort -rn -k +4 | head"
+# 默认显示 10 个，可以用 -n 指定显示的个数
+
 
 #### Function command
 
