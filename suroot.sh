@@ -9,7 +9,7 @@ ROOT_PASSWD="123456"
 
 expect -c "
 spawn /bin/su root
-expect \"*?password:*\"
+expect \"*?Password:*\"
 send -- \"$ROOT_PASSWD\r\"
 send -- \"\r\"
 interact
