@@ -161,3 +161,6 @@ alias deact="source deactivate"
 # 在当前目录的 Python 代码中查找字符串，search in py.
 alias sipy="find . -name '*.py' | xargs grep -n --color"
 
+
+#### Set unbuffered python
+export PYTHONUNBUFFERED=1
