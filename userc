@@ -65,6 +65,7 @@ alias histg="history | grep"
 
 # 搜索进程
 alias psg="ps aux | grep -v grep | grep"
+alias pspy="grep -Ev 'watch|grep' | grep --color python"
 
 # 以树形结构递归地显示目录结构
 alias lsr="ls -R | grep :$ | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
@@ -95,11 +96,20 @@ alias loginusers="cat /etc/passwd | grep -v /sbin/nologin | cut -d : -f 1 | sort
 #alias goserver="ssh xxx@xxxxxxx"
 
 # 获取占用CPU最高的前十个进程
-alias topcpu="ps aux | head -1; ps aux | grep -v PID | sort -rn -k +3 | head"
+#alias topcpu="ps aux | head -1; ps aux | grep -v PID | sort -rn -k +3 | head"
+alias topcpu="ps -aux --sort -pcpu | head"
 
 # 获取占用内存最高的前十个进程
-alias topmem="ps aux | head -1; ps aux | grep -v PID | sort -rn -k +4 | head"
+#alias topmem="ps aux | head -1; ps aux | grep -v PID | sort -rn -k +4 | head"
+alias topmem="ps -aux --sort -pmem | head"
 # 默认显示 10 个，可以用 -n 指定显示的个数
+
+# 监控进程 CPU，MEM 占用
+alias watch-ps="watch -d -n1 'ps -aux --sort -pmem,-pcpu | head -n 25'"
+
+# 监控 Python 程序 MEM 和 CPU 占用
+alias watch-py="watch -cd -n1 'ps -aux --sort -pmem,-pcpu | grep -v watch | \
+grep -v grep | grep --color python'"
 
 
 #### Function command
@@ -164,3 +174,4 @@ alias sipy="find . -name '*.py' | xargs grep -n --color"
 
 #### Set unbuffered python
 export PYTHONUNBUFFERED=1
+
