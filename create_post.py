@@ -24,7 +24,7 @@ def create_post_file(name, title, target):
     with open(path, "w") as f:
         f.write('---\n')
         f.write('layout: post\n')
-        f.write('thread: %s\n' % md5(path))
+        #f.write('thread: %s\n' % md5(path))
         f.write('title: "%s"\n' % title)
         f.write('keywords:\n')
         f.write('description:\n')
