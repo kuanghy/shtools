@@ -78,7 +78,7 @@ alias websiteget="wget --random-wait -r -p -e robots=off -U mozilla"
 alias listen="lsof -P -i -n" 
 
 # 获取公网IP地址和主机名
-alias ipinfo="curl ifconfig.me && curl ifconfig.me/host"
+alias ipaddr="curl ident.me"
 
 # 获取操作系统位数
 alias osbit="getconf LONG_BIT"
