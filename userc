@@ -92,9 +92,6 @@ alias allgroup="cut -d : -f 1 /etc/group | sort | xargs"
 alias bashusers="cat /etc/passwd | grep /bin/bash | cut -d : -f 1 | sort | xargs"
 alias loginusers="cat /etc/passwd | grep -v /sbin/nologin | cut -d : -f 1 | sort | xargs"
 
-# ssh server
-#alias goserver="ssh xxx@xxxxxxx"
-
 # 获取占用CPU最高的前十个进程
 #alias topcpu="ps aux | head -1; ps aux | grep -v PID | sort -rn -k +3 | head"
 alias topcpu="ps -aux --sort -pcpu | head"
@@ -174,4 +171,10 @@ alias sipy="find . -name '*.py' | xargs grep -n --color"
 
 #### Set unbuffered python
 export PYTHONUNBUFFERED=1
+
+
+#### 设置 Tmux 自动补全
+if [ -f ~/aboutme/bash-userc/tmux/bash_completion_tmux.sh ]; then
+    source ~/aboutme/bash-userc/tmux/bash_completion_tmux.sh
+fi
 
