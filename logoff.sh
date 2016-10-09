@@ -1,16 +1,18 @@
 #! /bin/bash
 
-# Filename: shutdown-hnow.sh 2016-09-19
+# Filename: logoff.sh 2016-10-08
 # Author: Huoty <sudohuoty@gmail.com>
 # Script starts from here:
 
+# 注销桌面
+
 set -e
 
-echo "Shutting down ..."
+echo "Desktop logging off ..."
 
 if [ $USER = "root" ]; then
-    init 0
+    pkill Xorg
 else
-    sudo init 0
+    sudo pkill Xorg
 fi
 
