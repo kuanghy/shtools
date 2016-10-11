@@ -155,22 +155,19 @@ extract() {
 ## help: extract [archive file]
 
 
-#### Switch python environment
-alias chenv="source activate"
+#### Python 相关设置
+alias chenv="source activate"  # 切换 Python 环境
 alias deact="source deactivate"
 
+export PYTHONUNBUFFERED=1  # 不缓冲标准流
+# export PYTHONOPTIMIZE=1  # 优化字节码
 
-#### Content search
-# 在当前目录的 Python 代码中查找字符串，search in py.
-alias sipy="find . -name '*.py' | xargs grep -n --color"
-
-
-#### Set unbuffered python
-export PYTHONUNBUFFERED=1
+alias sipy="find . -name '*.py' | xargs grep -n --color"  # 在 Python 代码中查找
+alias ackpy="ack --python"
 
 
 #### 设置 Tmux 自动补全
-if [ -f ~/aboutme/bash-userc/tmux/bash_completion_tmux.sh ]; then
-    source ~/aboutme/bash-userc/tmux/bash_completion_tmux.sh
+if [ -f ~/aboutme/bash-tools/tmux/bash_completion_tmux.sh ]; then
+    source ~/aboutme/bash-tools/tmux/bash_completion_tmux.sh
 fi
 
