@@ -159,7 +159,7 @@ alias chenv="source activate"  # 切换 Python 环境
 alias deact="source deactivate"
 
 export PYTHONUNBUFFERED=1  # 不缓冲标准流
-# export PYTHONOPTIMIZE=1  # 优化字节码
+export PYTHONOPTIMIZE=1    # 优化字节码
 
 alias sipy="find . -name '*.py' | xargs grep -n --color"  # 在 Python 代码中查找
 alias ackpy="ack --python"
