@@ -163,6 +163,7 @@ export PYTHONOPTIMIZE=1    # 优化字节码
 
 alias sipy="find . -name '*.py' | xargs grep -n --color"  # 在 Python 代码中查找
 alias ackpy="ack --python"
+alias pytest="py.test -xvvls"
 
 
 #### 设置 Tmux 自动补全
