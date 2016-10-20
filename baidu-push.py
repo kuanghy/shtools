@@ -5,7 +5,7 @@
 #     Filename @  baidu_push.py
 #       Author @  Huoty
 #  Create date @  2016-04-04 18:13:54
-#  Description @  Baidu Push
+#  Description @  向百度站长平台手动提交博客链接
 # *************************************************************
 
 import os
