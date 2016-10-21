@@ -22,7 +22,7 @@ Crontab 设置：
     * *    * * *   sleep 30; memmaker --ignore=atom,terminator --min-pid=1000 >>/tmp/memmaker.log 2>&1
 """
 
-from __future__ import absolute_import, division
+from __future__ import division
 
 import os
 import sys
@@ -112,7 +112,7 @@ def scanner(mem_limit=30,  min_pid=0, ignore=None, debug=False):
             if proc_mem_percent > mem_limit and total_mem_percent > 80:
                 proc.terminate()
                 time.sleep(0.1)
-                if proc.is_running:
+                while proc.is_running():
                     proc.kill()  # 如果进程还没有结束就强制杀掉
                 log.info("killed: %s, mem: %s, total_mem:%s" % (cmd, proc_mem_percent, total_mem_percent))
         except NoSuchProcess:
