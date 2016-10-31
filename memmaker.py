@@ -114,9 +114,9 @@ def scanner(mem_limit=30,  min_pid=0, ignore=None, debug=False):
                 time.sleep(0.1)
                 while proc.is_running():
                     proc.kill()  # 如果进程还没有结束就强制杀掉
-                log.info("killed: %s, mem: %s, total_mem:%s" % (cmd, proc_mem_percent, total_mem_percent))
-        except NoSuchProcess:
-            pass
+                log.info("killed: %s, mem: %s, total_mem: %s" % (cmd, proc_mem_percent, total_mem_percent))
+        except NoSuchProcess as e:
+            log.warning("%s, mem: %s, total_mem: %s" % (e, proc_mem_percent, total_mem_percent))
         except Exception as e:
             log.exception(e)
 

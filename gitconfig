@@ -44,3 +44,5 @@
     graph = log --pretty=fuller --graph
     vr = log --oneline
     slog = shortlog
+[push]
+	default = simple
