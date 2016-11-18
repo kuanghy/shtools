@@ -154,6 +154,10 @@ extract() {
 ## help: extract [archive file]
 
 
+#### 添加用户 bin 目录到 PATH
+export PATH="~/bin/:$PATH"
+
+
 #### Python 相关设置
 alias chenv="source activate"  # 切换 Python 环境
 alias deact="source deactivate"

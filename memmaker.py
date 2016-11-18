@@ -110,6 +110,7 @@ def scanner(mem_limit=30,  min_pid=0, ignore=None, debug=False):
             proc_mem_percent = proc.memory_percent()
             total_mem_percent = virtual_memory().percent
             if proc_mem_percent > mem_limit and total_mem_percent > 80:
+                log.info("killing: %s, mem: %s, total_mem: %s" % (cmd, proc_mem_percent, total_mem_percent))
                 proc.terminate()
                 time.sleep(0.1)
                 while proc.is_running():

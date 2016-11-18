@@ -5,7 +5,7 @@
 alias docker-pid="docker inspect --format '{{.State.Pid}}'"
 alias docker-ip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
 alias docker-clear="docker ps -aq | xargs docker rm"
-alias docker-rmi-all="docker rmi -f $(docker images -aq)"
+alias docker-killall="docker ps -q | xargs docker kill"
 
 docker-bash() { docker run -it $1 /bin/bash; }
 
