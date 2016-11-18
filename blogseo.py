@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # *************************************************************
-#     Filename @  baidu_push.py
+#     Filename @  blogseo.py
 #       Author @  Huoty
 #  Create date @  2016-04-04 18:13:54
 #  Description @  博客自动搜索引擎优化
@@ -72,6 +72,29 @@ def get_logger(name):
 
 log = get_logger("BlogSEO")
 
+def send_mail():
+    # from mailer import Mailer, Message
+	# mail_msg = Message(From="监听者<%s>"%(os.environ["MAIL_ADDR"]),
+	# 	To=["1346632121@qq.com"],
+	# 	charset="utf-8")
+	# mail_msg.Subject = "Baidu push report"
+	# mail_msg.Html = "<strong>Report: </strong><p>%s</p>" % (msg)
+	# sender = Mailer(host="smtp.yeah.net", usr=os.environ["MAIL_ADDR"], pwd=os.environ["MAIL_PASS"])
+	# sender.send(mail_msg)
+    pass
+
+
+class Request(object):
+    def __init__(self):
+        pass
+
+    def get(self):
+        pass
+
+    def post(self):
+        pass
+
+
 def get_site_urls(sitemap_url):
 	try:
 		r = requests.get(sitemap_url, timeout=30)
@@ -100,6 +123,7 @@ def push_urls():
 	headers = {"content-type": "text/plain"}
 
 	urls = get_site_urls(sitemap_url)
+        print urls
 	count = len(urls)
 	if count > 0:
 		data = "\n".join(get_site_urls(sitemap_url))
@@ -117,6 +141,7 @@ def push_urls():
 		log.exception("Invalid HTTP response")
 
 	response_msg = eval(r.text)  # Evaluate dict
+        print response_msg
 
 	if "success" in response_msg:
 		msg = "Url number of successful push is %s, remain %s" % \
@@ -129,14 +154,7 @@ def push_urls():
 
 	log.info(msg)
 
-	# from mailer import Mailer, Message
-	# mail_msg = Message(From="监听者<%s>"%(os.environ["MAIL_ADDR"]),
-	# 	To=["1346632121@qq.com"],
-	# 	charset="utf-8")
-	# mail_msg.Subject = "Baidu push report"
-	# mail_msg.Html = "<strong>Report: </strong><p>%s</p>" % (msg)
-	# sender = Mailer(host="smtp.yeah.net", usr=os.environ["MAIL_ADDR"], pwd=os.environ["MAIL_PASS"])
-	# sender.send(mail_msg)
+
 
 
 # Script starts from here
