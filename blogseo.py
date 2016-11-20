@@ -15,6 +15,7 @@
 import os
 import sys
 import re
+import json
 import requests
 
 
@@ -84,77 +85,56 @@ def send_mail():
     pass
 
 
-class Request(object):
+class KeepAliveRequest(object):
     def __init__(self):
-        pass
+        self.session = requests.Session()
+        self.session.headers.update({
+            "User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:49.0) Gecko/20100101 Firefox/49.0",
+        })
 
-    def get(self):
-        pass
+    def __request_text(self, url, payload=None, method="GET"):
+        if method not in ("GET", "POST"):
+            log.error("Not support '%s' request type" % method)
+            return None
 
-    def post(self):
-        pass
+        try:
+            res = self.session.get(url, params=payload) if method == "GET" else \
+                self.session.post(url, data=payload)
+            res.raise_for_status()
+            return res.text
+        except Exception as e:
+            log.exception(e)
 
+    def get(self, url, payload=None):
+        return self.__request_text(url, payload=payload, method="GET")
 
-def get_site_urls(sitemap_url):
-	try:
-		r = requests.get(sitemap_url, timeout=30)
-	except requests.exceptions.Timeout:
-		log.exception("Connection timeout")
-	except requests.exceptions.ConnectionError:
-		log.exception("Connection error")
-	except requests.exceptions.HTTPError:
-		log.exception("Invalid HTTP response")
+    def post(self, url, payload=None):
+        return self.__request_text(url, payload=payload, method="POST")
 
-	return_code = r.status_code
-	return_content = r.text
-
-	if return_code == requests.codes.ok:
-		log.info("Request was successful")
-		urls = re.findall(r"<loc>(.*)</loc>", return_content)
-	else:
-		log.error("Request was aborted, status code is %s" % return_code)
-
-	return urls
 
 def push_urls():
-	sitemap_url = "http://blog.konghy.cn/sitemap.xml"
-	baidu_api = "http://data.zz.baidu.com/urls"
-	payload = {"site": "blog.konghy.cn", "token": "NXXQ0TnjAq8mt7mw"}
-	headers = {"content-type": "text/plain"}
+    sitemap_url = "http://blog.konghy.cn/sitemap.xml"
+    baidu_push_api = "http://data.zz.baidu.com/urls?site=blog.konghy.cn&token=NXXQ0TnjAq8mt7mw"
 
-	urls = get_site_urls(sitemap_url)
-        print urls
-	count = len(urls)
-	if count > 0:
-		data = "\n".join(get_site_urls(sitemap_url))
-	else:
-		log.warning("Did not get to any url!")
-		return
+    request = KeepAliveRequest()
+    sitemap = request.get(sitemap_url)
+    urls = re.findall(r"<loc>(.*)</loc>", sitemap)
 
-	try:
-		r = requests.post(baidu_api, params=payload, headers=headers, data=data, timeout=30)
-	except requests.exceptions.Timeout:
-		log.exception("Connection timeout")
-	except requests.exceptions.ConnectionError:
-		log.exception("Connection error")
-	except requests.exceptions.HTTPError:
-		log.exception("Invalid HTTP response")
+    if urls:
+        data = "\n".join(urls)
 
-	response_msg = eval(r.text)  # Evaluate dict
-        print response_msg
+        request.session.headers.update({"content-type": "text/plain"})
+        res_text = request.post(baidu_push_api, payload=data)
+        res_data = json.loads(res_text)
 
-	if "success" in response_msg:
-		msg = "Url number of successful push is %s, remain %s" % \
-			(response_msg["success"], response_msg["remain"])
-	elif "error" in response_msg:
-		msg = "Failed to push, " + response_msg['message']
-		log.error(msg)
-	else:
-		msg = "Unknown response message!"
-
-	log.info(msg)
-
-
+        if "error" in res_data and res_data["success"] == 0:
+            log.error(res_text)
+        elif res_data.get("not_valid", None):
+            log.error("There are some not-valid urls: %s" % res_data["not_valid"])
+        else:
+            log.info("Url number of successful push is {success}, remain {remain}".format(**res_data))
+    else:
+        log.error("Did not get to any url!")
 
 
 # Script starts from here
