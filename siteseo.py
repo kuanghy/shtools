@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 
 # *************************************************************
-#     Filename @  blogseo.py
-#       Author @  Huoty
-#  Create date @  2016-04-04 18:13:54
-#  Description @  博客自动搜索引擎优化
+#  Copyright (c) Huoty - All rights reserved
+#
+#      Author: Huoty <sudohuoty@gmail.com>
+#  CreateTime: 2016-11-24 23:43:37
 # *************************************************************
 
 """
@@ -112,9 +112,9 @@ class KeepAliveRequest(object):
         return self.__request_text(url, payload=payload, method="POST")
 
 
-def push_urls():
-    sitemap_url = "http://blog.konghy.cn/sitemap.xml"
-    baidu_push_api = "http://data.zz.baidu.com/urls?site=blog.konghy.cn&token=NXXQ0TnjAq8mt7mw"
+def push_urls(site):
+    sitemap_url = "http://{site}/sitemap.xml".format(site=site)
+    baidu_push_api = "http://data.zz.baidu.com/urls?site={site}&token=NXXQ0TnjAq8mt7mw".format(site=site)
 
     request = KeepAliveRequest()
     sitemap = request.get(sitemap_url)
@@ -132,7 +132,9 @@ def push_urls():
         elif res_data.get("not_valid", None):
             log.error("There are some not-valid urls: %s" % res_data["not_valid"])
         else:
-            log.info("Url number of successful push is {success}, remain {remain}".format(**res_data))
+            log.info("Push successfully for {}, success: {}, remain: {}".format(
+                site, res_data["success"], res_data["remain"])
+            )
     else:
         log.error("Did not get to any url!")
 
@@ -140,7 +142,8 @@ def push_urls():
 # Script starts from here
 
 if __name__ == "__main__":
-	push_urls()
+    for site in ("www.konghy.cn", "blog.konghy.cn", "opus.konghy.cn"):
+	   push_urls(site)
 
 # Crontab Configuration:
-#   0 18    * * *    baidu-push.py >>/tmp/baidu-push.log 2>&1
+#   0 18    * * *    siteseo.py >>/tmp/baidu-push.log 2>&1
