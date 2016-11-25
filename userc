@@ -28,15 +28,15 @@ fi
 #### History 历史命令相关设置
 export HISTTIMEFORMAT='%F %T  '
 
-alias h1='history 10' 
-alias h2='history 20' 
+alias h1='history 10'
+alias h2='history 20'
 alias h3='history 30'
 
 # 在该命令前加上一个空格来指示history忽略这条命令
-#export HISTCONTROL=ignorespace  
+#export HISTCONTROL=ignorespace
 
 # 让history在存储时忽略指定指令
-export HISTIGNORE="pwd:ls:ll:ls –ltr:history:h1:h2:h3"  
+export HISTIGNORE="pwd:ls:ll:ls –ltr:history:h1:h2:h3"
 
 
 #### Alias command
@@ -65,12 +65,16 @@ alias pspy="ps aux | grep -Ev 'watch|grep' | grep --color python"
 # 以树形结构递归地显示目录结构
 alias lsr="ls -R | grep :$ | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
 
-#下载整个网站
+# 对当前目录文件按大小排序
+alias lss="ls | xargs -i du -sh ./{} | sort -h"  #这种写发对一些sort版本不适用
+alias lss2="ls | xargs -i du -s ./{}  | sort -n | awk '{print $2}' | xargs -i du -sh {}"  # 通用，但效率低
+
+# 下载整个网站
 alias websiteget="wget --random-wait -r -p -e robots=off -U mozilla"
 ## help: websiteget [URL]
 
 # 显示出哪个应用程序连接到网络
-alias listen="lsof -P -i -n" 
+alias listen="lsof -P -i -n"
 
 # 获取公网IP地址和主机名
 alias ipaddr="curl ident.me"
@@ -78,8 +82,8 @@ alias ipaddr="curl ident.me"
 # 获取操作系统位数
 alias osbit="getconf LONG_BIT"
 
-# 只为有趣 
-alias busy="cat /dev/urandom | hexdump -C | grep 'ca fe'" 
+# 只为有趣
+alias busy="cat /dev/urandom | hexdump -C | grep 'ca fe'"
 
 # 获取所有用户和组
 alias alluser="cut -d : -f 1 /etc/passwd | sort | xargs"
@@ -131,25 +135,25 @@ genpasswd() {
 lrandpw() { < /dev/urandom tr -dc '12345!@#$%qwertQWERTasdfgASDFGzxcvbZXCVB' | head -c${1:-'$1'};echo; }
 
 # 解压任何类型的文档
-extract() { 
-    if [ -f $1 ]; then 
-      case $1 in 
-        *.tar.bz2)   tar xjvf $1    ;; 
-        *.tar.gz)    tar xzvf $1    ;; 
-        *.bz2)       bunzip2 $1     ;; 
-        *.rar)       unrar e $1     ;; 
-        *.gz)        gunzip $1      ;; 
-        *.tar)       tar xvf $1     ;; 
-        *.tbz2)      tar xjvf $1    ;; 
-        *.tgz)       tar xzvf $1    ;; 
-        *.zip)       unzip $1       ;; 
-        *.Z)         uncompress $1  ;; 
-        *.7z)        7z x $1        ;; 
-        *)     echo "'$1' cannot be extracted via extract()" ;; 
-         esac 
-     else 
-         echo "'$1' is not a valid file" 
-     fi 
+extract() {
+    if [ -f $1 ]; then
+      case $1 in
+        *.tar.bz2)   tar xjvf $1    ;;
+        *.tar.gz)    tar xzvf $1    ;;
+        *.bz2)       bunzip2 $1     ;;
+        *.rar)       unrar e $1     ;;
+        *.gz)        gunzip $1      ;;
+        *.tar)       tar xvf $1     ;;
+        *.tbz2)      tar xjvf $1    ;;
+        *.tgz)       tar xzvf $1    ;;
+        *.zip)       unzip $1       ;;
+        *.Z)         uncompress $1  ;;
+        *.7z)        7z x $1        ;;
+        *)     echo "'$1' cannot be extracted via extract()" ;;
+         esac
+     else
+         echo "'$1' is not a valid file"
+     fi
 }
 ## help: extract [archive file]
 
@@ -174,4 +178,3 @@ alias pytest="py.test -xvvls"
 if [ -f ~/aboutme/bash-tools/tmux/bash_completion_tmux.sh ]; then
     source ~/aboutme/bash-tools/tmux/bash_completion_tmux.sh
 fi
-
