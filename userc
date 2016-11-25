@@ -66,8 +66,7 @@ alias pspy="ps aux | grep -Ev 'watch|grep' | grep --color python"
 alias lsr="ls -R | grep :$ | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
 
 # 对当前目录文件按大小排序
-alias lss="ls | xargs -i du -sh ./{} | sort -h"  #这种写发对一些sort版本不适用
-alias lss2="ls | xargs -i du -s ./{}  | sort -n | awk '{print $2}' | xargs -i du -sh {}"  # 通用，但效率低
+alias lss="ls | xargs -i du -sh ./{} | sort -h"
 
 # 下载整个网站
 alias websiteget="wget --random-wait -r -p -e robots=off -U mozilla"
