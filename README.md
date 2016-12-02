@@ -13,6 +13,13 @@ if [ -f ~/.userc ]; then
 fi
 ```
 
+如果需要修改命令提示符样式，可以在做如上引入之后，在 `~/.bashrc` 文件中添加如下内容:
+
+```
+# custom command prompt style
+export PS1=$SCHEME4
+```
+
 ## gitconfig
 
 **Git 配置文件**。如果作为全局使用，则拷贝到主目录下：
