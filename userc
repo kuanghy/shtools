@@ -170,7 +170,7 @@ alias pytest="py.test -xvvls"
 
 
 #### 引入 Docker bashrc 文件
-if [ -f ~/.bashrc_docker ]; then  
+if [ -f ~/aboutme/bash-tools/bashrc_docker ]; then  
     source ~/aboutme/bash-tools/bashrc_docker  
 fi
 
