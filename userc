@@ -100,8 +100,7 @@ alias topmem="ps -aux --sort -pmem | head"
 alias watch-ps="watch -d -n1 'ps -aux --sort -pmem,-pcpu | head -n 25'"
 
 # 监控 Python 程序 MEM 和 CPU 占用
-alias watch-py="watch -cd -n1 'ps -aux --sort -pmem,-pcpu | grep -v watch | \
-    grep -v grep | grep --color python'"
+alias watch-py="watch -cd -n1 'ps -aux --sort -pmem,-pcpu | grep -v watch | grep -v grep | grep --color python'"
 
 
 #### Function command
@@ -115,6 +114,9 @@ cdl() { cd "$1"; ls; }
 # 文件 MD5 校验
 md5check() { md5sum "$1" | grep "$2"; }
 ## help: md5check [file] [key]
+
+# 统计 TCP 连接状态
+tcpstat() { netstat -n | awk '/^tcp/ {++state[$NF]} END {for(key in state) print key,"\t",state[key]}'; }
 
 # 生成随机密码
 genpasswd() {
