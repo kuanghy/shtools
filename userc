@@ -157,7 +157,7 @@ extract() {
 
 
 #### 添加用户 bin 目录到 PATH
-export PATH="~/bin/:$PATH"
+export PATH="$HOME/bin/:$PATH"
 
 
 #### Python 相关设置
