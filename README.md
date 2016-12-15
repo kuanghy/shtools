@@ -38,6 +38,17 @@ if [ -f ~/.bashrc_docker ]; then
 fi
 ```
 
+## 设置 Tmux 自动补全
+
+在 ~/.bashrc 中添加如下内容以增强对 tmux 的补全功能：
+
+```
+if [ -f ~/aboutme/bash-tools/tmux/bash_completion_tmux.sh ]; then
+    source ~/aboutme/bash-tools/tmux/bash_completion_tmux.sh
+fi
+```
+
+
 ## ressh
 
 **登陆远程服务器**。自动化 ssh 连接远程服务器，需要安装 `autossh` 和 `expect`:

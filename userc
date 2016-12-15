@@ -17,7 +17,7 @@ SCHEME4="\[\033[01;36m\][\[\033[01;32m\]\u\[\033[01;31m\]@\[\033[01;32m\]\h \[\0
 
 
 #### 开启终端 256 色
-if [ "$TERM" == "xterm" ]; then
+if [ "$TERM" = "xterm" ]; then
     export TERM=xterm-256color
 fi
 
@@ -174,11 +174,5 @@ alias pytest="py.test -xvvls"
 #### 引入 Docker bashrc 文件
 if [ -f ~/aboutme/bash-tools/bashrc_docker ]; then  
     source ~/aboutme/bash-tools/bashrc_docker  
-fi
-
-
-#### 设置 Tmux 自动补全
-if [ -f ~/aboutme/bash-tools/tmux/bash_completion_tmux.sh ]; then
-    source ~/aboutme/bash-tools/tmux/bash_completion_tmux.sh
 fi
 

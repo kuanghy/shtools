@@ -225,6 +225,7 @@ c.NotebookApp.port = 12318
 
 # DISABLED: use %pylab or %matplotlib in the notebook to enable matplotlib.
 # c.NotebookApp.pylab = 'disabled'
+c.IPKernelApp.matplotlib = 'inline'
 
 # (sec) Time window used to  check the message and data rate limits.
 # c.NotebookApp.rate_limit_window = 1.0
