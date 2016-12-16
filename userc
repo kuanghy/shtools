@@ -6,13 +6,12 @@
 #########################################################################
 
 
-#### 终端命令提示符样式
-SCHEME1="\[\033[01;35m\]\u\[\033[01;31m\]\$\[\033[01;36m\][\W]\[\033[01;32m\] >>\[\033[00m\] "
-SCHEME2="\[\033[01;32m\]\u\[\033[01;31m\]\$\[\033[01;36m\][\W]\[\033[01;32m\] =>\[\033[00m\] "
-SCHEME3="\[\033[01;36m\][\[\033[01;35m\]\u\[\033[01;31m\]@\[\033[01;35m\]\h \[\033[01;36m\]\W]\[\033[01;32m\]\$\[\033[00m\] "
-SCHEME4="\[\033[01;36m\][\[\033[01;32m\]\u\[\033[01;31m\]@\[\033[01;32m\]\h \[\033[01;36m\]\W]\[\033[01;32m\]\$\[\033[00m\] "
+#### 终端 Bash 命令提示符样式
+SCHEME1="\[\e[01;35m\]\u\[\e[01;31m\]\$\[\e[01;36m\][\W]\[\e[01;35m\] >>\[\e[00m\] "
+SCHEME2="\[\e[01;32m\]\u\[\e[01;31m\]\$\[\e[01;36m\][\W]\[\e[01;32m\] =>\[\e[00m\] "
+SCHEME3="\[\e[01;36m\][\[\e[01;35m\]\u\[\e[01;31m\]@\[\e[01;35m\]\h \[\e[01;36m\]\W]\[\e[01;35m\]\$\[\e[00m\] "
+SCHEME4="\[\e[01;36m\][\[\e[01;32m\]\u\[\e[01;31m\]@\[\e[01;32m\]\h \[\e[01;36m\]\W]\[\e[01;32m\]\$\[\e[00m\] "
 
-#export PS1=$SCHEME3
 #export PS1=$SCHEME4
 
 
@@ -97,7 +96,7 @@ alias topmem="ps -aux --sort -pmem | head"
 # 默认显示 10 个，可以用 -n 指定显示的个数
 
 # 监控进程 CPU，MEM 占用
-alias watch-ps="watch -d -n1 'ps -aux --sort -pmem,-pcpu | head -n 25'"
+alias watch-ps="watch -d -n1 'ps -aux --sort -pmem,-pcpu | head -25'"
 
 # 监控 Python 程序 MEM 和 CPU 占用
 alias watch-py="watch -cd -n1 'ps -aux --sort -pmem,-pcpu | grep -v watch | grep -v grep | grep --color python'"
@@ -164,15 +163,9 @@ export PATH="$HOME/bin/:$PATH"
 export PYTHONUNBUFFERED=1  # 不缓冲标准流
 # export PYTHONOPTIMIZE=1    # 优化字节码
 
-alias chenv="source activate"  # 切换 Python 环境
+alias chenv="source activate"  # 切换 Conda Python 环境
 alias deact="source deactivate"
 alias sipy="find . -name '*.py' | xargs grep -n --color"  # 在 Python 代码中查找
 alias ackpy="ack --python"
 alias pytest="py.test -xvvls"
-
-
-#### 引入 Docker bashrc 文件
-if [ -f ~/aboutme/bash-tools/bashrc_docker ]; then  
-    source ~/aboutme/bash-tools/bashrc_docker  
-fi
 
