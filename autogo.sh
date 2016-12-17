@@ -18,7 +18,7 @@ USER_AUTOSSH_DIR="$HOME/.autossh"
 
 if [ -s $USER_AUTOSSH_DIR/autossh.log ]; then
     TEN_MBYTE=`expr 10 \* 1024 \* 1024`
-    logsize=`du -b $USER_AUTOSSH_DIR/autossh.log | awk '{ print $1 }'`
+    logsize=`wc -c < $USER_AUTOSSH_DIR/autossh.log`
     if [ "$logsize" -gt "$TEN_MBYTE" ]; then
         timestamp=`date +%Y``date +%m``date +%d``date +%H``date +%M``date +%S`
         (

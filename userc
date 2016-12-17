@@ -87,19 +87,21 @@ alias bashusers="cat /etc/passwd | grep /bin/bash | cut -d : -f 1 | sort | xargs
 alias loginusers="cat /etc/passwd | grep -v /sbin/nologin | cut -d : -f 1 | sort | xargs"
 
 # 获取占用CPU最高的前十个进程
-#alias topcpu="ps aux | head -1; ps aux | grep -v PID | sort -rn -k +3 | head"
-alias topcpu="ps -aux --sort -pcpu | head"
+alias topcpu="ps aux | grep -v PID | sort -nrk +3 | head"
+#alias topcpu="ps -aux --sort -pcpu | head"
 
 # 获取占用内存最高的前十个进程
-#alias topmem="ps aux | head -1; ps aux | grep -v PID | sort -rn -k +4 | head"
-alias topmem="ps -aux --sort -pmem | head"
-# 默认显示 10 个，可以用 -n 指定显示的个数
+alias topmem="ps aux | grep -v PID | sort -nrk +4 | head"
+#alias topmem="ps -aux --sort -pmem | head"
 
-# 监控进程 CPU，MEM 占用
-alias watch-ps="watch -d -n1 'ps -aux --sort -pmem,-pcpu | head -25'"
+# 监控进程 CPU，MEM 占用，Mac 不兼容
+alias watch-ps="watch -d -n1 'ps aux --sort -pmem,-pcpu | head -25'"
 
-# 监控 Python 程序 MEM 和 CPU 占用
-alias watch-py="watch -cd -n1 'ps -aux --sort -pmem,-pcpu | grep -v watch | grep -v grep | grep --color python'"
+# 监控最占用的 CPU 的进程，Mac 兼容
+alias watch-cpu="watch -n1 'ps aux | grep -v PID | sort -nrk +3 | head -25'"
+
+# 监控最占用的 MEM 的进程，Mac 兼容
+alias watch-mem="watch -d -n1 'ps aux | grep -v PID | sort -nrk +4 | head -25'"
 
 
 #### Function command
@@ -116,6 +118,9 @@ md5check() { md5sum "$1" | grep "$2"; }
 
 # 统计 TCP 连接状态
 tcpstat() { netstat -n | awk '/^tcp/ {++state[$NF]} END {for(key in state) print key,"\t",state[key]}'; }
+
+# 粗略统计系统所有进程占用的总内存
+statmem() { ps aux | awk '{mem += $6} END {print mem/1024/1024}' }
 
 # 生成随机密码
 genpasswd() {
