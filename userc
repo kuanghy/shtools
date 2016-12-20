@@ -38,9 +38,13 @@ export HISTIGNORE="pwd:ls:ll:ls –ltr:history:h1:h2:h3"
 #### Alias command
 
 # 一些常用的 ls 别名
-alias ll='ls -alF'
+alias ls='ls -F --color=auto'
 alias la='ls -A'
+alias ll='ls -alF'
 alias l='ls -CF'
+
+# 删除文件给出提示
+alias rm="rm -i"
 
 # 让 grep 彩色输出
 alias grep='grep --color=auto'
