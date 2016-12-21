@@ -42,9 +42,6 @@ alias la='ls -A'
 alias ll='ls -alF'
 alias l='ls -CF'
 
-# 删除文件给出提示
-alias rm="rm -i"
-
 # 让 grep 彩色输出
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
@@ -165,6 +162,17 @@ extract() {
 
 #### 添加用户 bin 目录到 PATH
 export PATH="$HOME/bin/:$PATH"
+
+
+#### 使用 trash 而不是 rm 命令
+# 安装：
+#   Ubuntu: apt-get install trash-cli
+#   Mac OS: brew install trash
+if [ -x "$(command -v trash)" ]; then
+    alias rm='echo "This is not the command you are looking for."; false'
+else
+    alias rm="rm -i"
+fi
 
 
 #### Python 相关设置
