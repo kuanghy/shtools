@@ -123,7 +123,7 @@ md5check() { md5sum "$1" | grep "$2"; }
 tcpstat() { netstat -n | awk '/^tcp/ {++state[$NF]} END {for(key in state) print key,"\t",state[key]}'; }
 
 # 粗略统计系统所有进程占用的总内存
-statmem() { ps aux | awk '{mem += $6} END {print mem/1024/1024}' }
+statmem() { ps aux | awk '{mem += $6} END {print mem/1024/1024}'; }
 
 # 生成随机密码
 genpasswd() {
