@@ -11,9 +11,9 @@ c.AliasManager.user_aliases = [
     ('ll', 'ls -alF'),
     ('la', 'ls -A'),
     ('l', 'ls -CF'),
-    ('ps', 'ps -aux'),
+    ('ps', 'ps aux'),
     ('psg', 'ps aux | grep -v grep | grep'),
-    ('topcpu', 'ps -aux --sort -pcpu | head'),
+    ('topcpu', 'ps aux --sort -pcpu | head'),
     ('git', 'git'),
     ('pytest', 'py.test -xvvls'),
 ]
