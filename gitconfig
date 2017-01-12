@@ -1,18 +1,24 @@
 [user]
-	email = sudohuoty@163.com
 	name = Huayong Kuang
+	email = sudohuoty@163.com
 [credential]
 	helper = store
 [core]
 	editor = vim
 	safecrlf = true
 	filename = true
-[gui]
-	recentrepo = /home/huoty/kuankelib
+[color]
+    ui = true
 [branch]
 	autosetuprebase = always
 [rebase]
 	stat = true
+[push]
+	default = simple
+[diff]
+    tool = vimdiff
+[difftool]
+    prompt = false
 [alias]
     df = diff
     mg = merge --no-ff
@@ -41,8 +47,7 @@
     check = clean -xdfn
     stu = status -uno
     cc = cherry-pick --continue
-    graph = log --pretty=fuller --graph
-    vr = log --oneline
     slog = shortlog
-[push]
-	default = simple
+    graph = log --pretty=fuller --graph
+    lo = !git --no-pager log --oneline --decorate
+    ls = log --stat
