@@ -50,6 +50,10 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
+# 部分命名命令显示详细的执行过程
+alias chmod='chmod -v'
+alias chown='chown -v'
+
 # 用超级用户打开文件
 alias svi="sudo vim"
 alias sgedit="sudo gedit"
