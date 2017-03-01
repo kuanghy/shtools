@@ -11,6 +11,8 @@
     ui = true
 [branch]
 	autosetuprebase = always
+[pull]
+	rebase = true
 [rebase]
 	stat = true
 [push]
