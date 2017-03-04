@@ -110,6 +110,9 @@ alias watch-cpu="watch -n1 'ps aux | grep -v PID | sort -nrk +3 | head -25'"
 # 监控最占用的 MEM 的进程，Mac 兼容
 alias watch-mem="watch -d -n1 'ps aux | grep -v PID | sort -nrk +4 | head -25'"
 
+# 产生十六进制随机数字符串
+alias hexstr="openssl rand -hex"
+
 
 #### Function command
 
@@ -179,6 +182,12 @@ if [ -x "$(command -v trash)" ]; then
     alias rm='echo "This is not the command you are looking for."; false'
 else
     alias rm="rm -i"
+fi
+
+
+#### 包含 z.sh 脚本，实现目录快速跳转
+if [ -f ~/.z.sh ]; then
+    source ~/.z.sh
 fi
 
 
