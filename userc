@@ -192,7 +192,8 @@ fi
 
 
 #### Python 相关设置
-export PYTHONUNBUFFERED=1  # 不缓冲标准流
+export PYTHONIOENCODING="UTF-8"  # 标准流的编码
+export PYTHONUNBUFFERED=1        # 不缓冲标准流
 # export PYTHONOPTIMIZE=1    # 优化字节码
 
 alias chenv="source activate"  # 切换 Conda Python 环境
