@@ -196,7 +196,6 @@ export PYTHONIOENCODING="UTF-8"  # 标准流的编码
 export PYTHONUNBUFFERED=1        # 不缓冲标准流
 # export PYTHONOPTIMIZE=1    # 优化字节码
 
-alias chenv="source activate"  # 切换 Conda Python 环境
 alias deact="source deactivate"
 alias sipy="find . -name '*.py' | xargs grep -n --color"  # 在 Python 代码中查找
 alias ackpy="ack --python"
@@ -204,3 +203,7 @@ alias pytest="py.test -xvvls"
 alias simplehttpserver="python -m SimpleHTTPServer"  # 启动一个简单的 http 服务器
 # alias simplehttpserver="python -m http.server"  # python3
 
+# 如何安装了 Conda 则设置 chenv 来切换 Python 环境
+if [ -x "$(command -v conda)" ]; then
+    alias chenv="source activate"
+fi
