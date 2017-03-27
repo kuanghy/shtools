@@ -8,14 +8,14 @@
 #  CreateTime: 2016-11-24 23:43:37
 # *************************************************************
 
-"""
-手动向百度搜索引擎提交链接
-"""
+"""手动向百度搜索引擎提交链接"""
 
 import os
 import sys
 import re
 import json
+import time
+import functools
 import requests
 
 
@@ -32,6 +32,7 @@ Message:
 
 %(message)s
 '''
+
 
 def get_logger(name):
     import logging
@@ -71,7 +72,9 @@ def get_logger(name):
 
     return logger
 
+
 log = get_logger("BlogSEO")
+
 
 def send_mail():
     # from mailer import Mailer, Message
@@ -85,7 +88,26 @@ def send_mail():
     pass
 
 
+def retry_decorator(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kw):
+        run_count = 0
+        while 1:
+            try:
+                run_count += 1
+                return func(*args, **kw)
+            except Exception as e:
+                if run_count > 100:
+                    raise
+                log.warn("func(%s) run error, error: %s, run_count: %s", func.__name__, e, run_count)
+                time.sleep(2)
+            else:
+                break
+    return wrapper
+
+
 class KeepAliveRequest(object):
+
     def __init__(self):
         self.session = requests.Session()
         self.session.headers.update({
@@ -98,16 +120,18 @@ class KeepAliveRequest(object):
             return None
 
         try:
-            res = self.session.get(url, params=payload) if method == "GET" else \
-                self.session.post(url, data=payload)
+            res = (self.session.get(url, params=payload, timeout=6) if method == "GET" else
+                self.session.post(url, data=payload, timeout=6))
             res.raise_for_status()
             return res.text
         except Exception as e:
             log.exception(e)
 
+    @retry_decorator
     def get(self, url, payload=None):
         return self.__request_text(url, payload=payload, method="GET")
 
+    @retry_decorator
     def post(self, url, payload=None):
         return self.__request_text(url, payload=payload, method="POST")
 
@@ -116,16 +140,24 @@ def push_urls(site):
     sitemap_url = "http://{site}/sitemap.xml".format(site=site)
     baidu_push_api = "http://data.zz.baidu.com/urls?site={site}&token=NXXQ0TnjAq8mt7mw".format(site=site)
 
-    request = KeepAliveRequest()
-    sitemap = request.get(sitemap_url)
-    urls = re.findall(r"<loc>(.*)</loc>", sitemap)
+    try:
+        request = KeepAliveRequest()
+        sitemap = request.get(sitemap_url)
+        urls = re.findall(r"<loc>(.*)</loc>", sitemap)
+    except Exception as e:
+        log.exception(e)
+        return
 
     if urls:
         data = "\n".join(urls)
 
-        request.session.headers.update({"content-type": "text/plain"})
-        res_text = request.post(baidu_push_api, payload=data)
-        res_data = json.loads(res_text)
+        try:
+            request.session.headers.update({"content-type": "text/plain"})
+            res_text = request.post(baidu_push_api, payload=data)
+            res_data = json.loads(res_text)
+        except Exception as e:
+            log.exception(e)
+            return
 
         if "error" in res_data and res_data["success"] == 0:
             log.error(res_text)
@@ -143,7 +175,7 @@ def push_urls(site):
 
 if __name__ == "__main__":
     for site in ("www.konghy.cn", "blog.konghy.cn", "opus.konghy.cn"):
-	   push_urls(site)
+        push_urls(site)
 
 # Crontab Configuration:
 #   0 18    * * *    siteseo.py >>/tmp/baidu-push.log 2>&1
