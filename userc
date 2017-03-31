@@ -132,6 +132,9 @@ tcpstat() { netstat -n | awk '/^tcp/ {++state[$NF]} END {for(key in state) print
 # 粗略统计系统所有进程占用的总内存
 statmem() { ps aux | awk '{mem += $6} END {print mem/1024/1024}'; }
 
+# 查看进程打开的文件描述符
+pfds() { ls -l /proc/$1/fd }
+
 # 生成随机密码
 genpasswd() {
     if [ $# -gt 1 ]; then

@@ -42,6 +42,10 @@ alias reload-zshrc="source ~/.zshrc"
 
 敲两下 esc 自动在命令前边加上 sudo
 
+- **z**
+
+加载 [z.sh](https://github.com/rupa/z), 用于快速跳转到常用目录
+
 - **extract**
 
 智能判断压缩包后缀来选择解压命令，输入 x 命令就可以解压所有文件
