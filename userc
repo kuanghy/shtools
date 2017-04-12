@@ -133,7 +133,7 @@ tcpstat() { netstat -n | awk '/^tcp/ {++state[$NF]} END {for(key in state) print
 statmem() { ps aux | awk '{mem += $6} END {print mem/1024/1024}'; }
 
 # 查看进程打开的文件描述符
-pfds() { ls -l /proc/$1/fd }
+pfds() { ls -l /proc/$1/fd; }
 
 # 生成随机密码
 genpasswd() {
