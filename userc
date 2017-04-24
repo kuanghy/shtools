@@ -63,12 +63,11 @@ alias hisg="history | grep"
 
 # 搜索进程
 alias psg="ps aux | grep -v grep | grep"
-alias pspy="ps aux | grep -Ev 'watch|grep' | grep --color python"
 
 # 以树形结构递归地显示目录结构
 alias lsr="ls -R | grep :$ | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
 
-# 对当前目录文件按大小排序
+# 对当前目录文件按大小排序（仅 Linux 环境可用）
 alias lss="ls | xargs -i du -sh ./{} | sort -h"
 
 # 下载整个网站
@@ -112,6 +111,7 @@ alias watch-mem="watch -d -n1 'ps aux | grep -v PID | sort -nrk +4 | head -25'"
 
 # 产生十六进制随机数字符串
 alias hexstr="openssl rand -hex"
+# help: hexstr 16
 
 
 #### Function command
@@ -200,14 +200,15 @@ export PYTHONIOENCODING="UTF-8"  # 标准流的编码
 export PYTHONUNBUFFERED=1        # 不缓冲标准流
 # export PYTHONOPTIMIZE=1    # 优化字节码
 
-alias deact="source deactivate"
-alias sipy="find . -name '*.py' | xargs grep -n --color"  # 在 Python 代码中查找
+alias greppy="find . -name '*.py' | xargs grep -n --color"  # 在 Python 代码中查找
 alias ackpy="ack --python"
 alias pytest="py.test -xvvls"
 alias simplehttpserver="python -m SimpleHTTPServer"  # 启动一个简单的 http 服务器
 # alias simplehttpserver="python -m http.server"  # python3
 
-# 如何安装了 Conda 则设置 chenv 来切换 Python 环境
-if [ -x "$(command -v conda)" ]; then
-    alias chenv="source activate"
-fi
+# 清理 Python 编译产生的二进制文件
+function pyclean() {
+    ZSH_PYCLEAN_PLACES=${*:-'.'}
+    find ${ZSH_PYCLEAN_PLACES} -type f -name "*.py[co]" -delete
+    find ${ZSH_PYCLEAN_PLACES} -type d -name "__pycache__" -delete
+}
