@@ -5,4 +5,5 @@
 # Script starts from here:
 
 source /home/notebook/.virtualenvs/py3/bin/activate
+export PS1="$ "
 exec jupyter-notebook "$*"
