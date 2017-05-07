@@ -1,0 +1,35 @@
+/**
+ * Placeholder for custom user CSS
+ *
+ * mainly to be overridden in profile/static/custom/custom.css
+ *
+ * This will always be an empty file in IPython
+ *
+ */
+
+/*
+ * Code block
+ */
+pre.CodeMirror-line {
+    font-family: 'BlinkMacSystemFont', 'Lucida Grande', 'Segoe UI', Ubuntu, Cantarell, sans-serif
+}
+
+.output_subarea.output_text.output_result>pre {
+    font-family: 'BlinkMacSystemFont', 'Lucida Grande', 'Segoe UI', Ubuntu, Cantarell, sans-serif
+}
+
+.output_subarea.output_text.output_stream.output_stdout>pre {
+    font-family: 'BlinkMacSystemFont', 'Lucida Grande', 'Segoe UI', Ubuntu, Cantarell, sans-serif
+}
+
+/*
+ * Markdown
+ */
+.rendered_html pre, .rendered_html code {
+    background: #E0E0E0;
+}
+
+.rendered_html pre {
+    margin: .5em 1em;
+    padding: .5em 1em;
+}
