@@ -10,16 +10,9 @@
 /*
  * Code block
  */
-pre.CodeMirror-line {
-    font-family: 'BlinkMacSystemFont', 'Lucida Grande', 'Segoe UI', Ubuntu, Cantarell, sans-serif
-}
-
-.output_subarea.output_text.output_result>pre {
-    font-family: 'BlinkMacSystemFont', 'Lucida Grande', 'Segoe UI', Ubuntu, Cantarell, sans-serif
-}
-
-.output_subarea.output_text.output_stream.output_stdout>pre {
-    font-family: 'BlinkMacSystemFont', 'Lucida Grande', 'Segoe UI', Ubuntu, Cantarell, sans-serif
+.CodeMirror pre, div.input_prompt, .completions select {
+    font-family: 'Consolas', 'Menlo', 'Ubuntu Mono', monospace, Monaco, sans-serif;
+    font-size: 15px;
 }
 
 /*
