@@ -7,7 +7,7 @@
 	editor = vim
 	safecrlf = true
     autocrlf = input
-	filename = true
+	filemode = true
 [color]
     ui = true
 [branch]
