@@ -76,18 +76,6 @@ def get_logger(name):
 log = get_logger("BlogSEO")
 
 
-def send_mail():
-    # from mailer import Mailer, Message
-	# mail_msg = Message(From="监听者<%s>"%(os.environ["MAIL_ADDR"]),
-	# 	To=["1346632121@qq.com"],
-	# 	charset="utf-8")
-	# mail_msg.Subject = "Baidu push report"
-	# mail_msg.Html = "<strong>Report: </strong><p>%s</p>" % (msg)
-	# sender = Mailer(host="smtp.yeah.net", usr=os.environ["MAIL_ADDR"], pwd=os.environ["MAIL_PASS"])
-	# sender.send(mail_msg)
-    pass
-
-
 def retry_decorator(func):
     @functools.wraps(func)
     def wrapper(*args, **kw):
@@ -97,7 +85,7 @@ def retry_decorator(func):
                 run_count += 1
                 return func(*args, **kw)
             except Exception as e:
-                if run_count > 100:
+                if run_count > 100:  # 重试 100 次
                     raise
                 log.warn("func(%s) run error, error: %s, run_count: %s", func.__name__, e, run_count)
                 time.sleep(2)
@@ -114,24 +102,21 @@ class KeepAliveRequest(object):
             "User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:49.0) Gecko/20100101 Firefox/49.0",
         })
 
+    @retry_decorator
     def __request_text(self, url, payload=None, method="GET"):
         if method not in ("GET", "POST"):
             log.error("Not support '%s' request type" % method)
             return None
 
-        try:
-            res = (self.session.get(url, params=payload, timeout=6) if method == "GET" else
-                self.session.post(url, data=payload, timeout=6))
-            res.raise_for_status()
-            return res.text
-        except Exception as e:
-            log.exception(e)
 
-    @retry_decorator
+        res = (self.session.get(url, params=payload, timeout=6) if method == "GET" else
+            self.session.post(url, data=payload, timeout=6))
+        res.raise_for_status()
+        return res.text
+
     def get(self, url, payload=None):
         return self.__request_text(url, payload=payload, method="GET")
 
-    @retry_decorator
     def post(self, url, payload=None):
         return self.__request_text(url, payload=payload, method="POST")
 
