@@ -53,11 +53,11 @@ def get_logger(name):
 
     # add main log handler for error
     mail_handler = CustomSMTPHandler(
-            mailhost = 'smtp.yeah.net',
-            fromaddr = os.environ["MAIL_ADDR"],
-            toaddrs  = ('loveqing2013@foxmail.com',),
-            subject  = '%(name)s Error: %(message)s',
-            credentials = (os.environ["MAIL_ADDR"], os.environ["MAIL_PASS"]))
+            mailhost='smtp.yeah.net',
+            fromaddr=os.environ["MAIL_ADDR"],
+            toaddrs=('loveqing2013@foxmail.com',),
+            subject='%(name)s Error: %(message)s',
+            credentials=(os.environ["MAIL_ADDR"], os.environ["MAIL_PASS"]))
     mail_handler.setLevel(logging.ERROR)
     mail_handler.setFormatter(logging.Formatter(error_mail_template))
     logger.addHandler(mail_handler)
@@ -87,7 +87,8 @@ def retry_decorator(func):
             except Exception as e:
                 if run_count > 100:  # 重试 100 次
                     raise
-                log.warn("func(%s) run error, error: %s, run_count: %s", func.__name__, e, run_count)
+                log.warn("func(%s) run error, error: %s, run_count: %s",
+                         func.__name__, e, run_count)
                 time.sleep(2)
             else:
                 break
@@ -97,9 +98,10 @@ def retry_decorator(func):
 class KeepAliveRequest(object):
 
     def __init__(self):
+        user_agent = "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:49.0) Gecko/20100101 Firefox/49.0"
         self.session = requests.Session()
         self.session.headers.update({
-            "User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:49.0) Gecko/20100101 Firefox/49.0",
+            "User-Agent": user_agent,
         })
 
     @retry_decorator
@@ -123,7 +125,8 @@ class KeepAliveRequest(object):
 
 def push_urls(site):
     sitemap_url = "http://{site}/sitemap.xml".format(site=site)
-    baidu_push_api = "http://data.zz.baidu.com/urls?site={site}&token=NXXQ0TnjAq8mt7mw".format(site=site)
+    baidu_push_api = "http://data.zz.baidu.com/urls?site={site}&token=NXXQ0TnjAq8mt7mw"
+    baidu_push_api = baidu_push_api.format(site=site)
 
     try:
         request = KeepAliveRequest()
@@ -147,11 +150,10 @@ def push_urls(site):
         if "error" in res_data and res_data["success"] == 0:
             log.error(res_text)
         elif res_data.get("not_valid", None):
-            log.error("There are some not-valid urls: %s" % res_data["not_valid"])
+            log.error("There are some not-valid urls: %s", res_data["not_valid"])
         else:
-            log.info("Push successfully for {}, success: {}, remain: {}".format(
+            log.info("Push successfully for %s, success: %s, remain: %s",
                 site, res_data["success"], res_data["remain"])
-            )
     else:
         log.error("Did not get to any url!")
 
