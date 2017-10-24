@@ -14,6 +14,8 @@
 	autosetuprebase = always
 [pull]
 	rebase = true
+[merge]
+    ff = no
 [rebase]
 	stat = true
 [push]
