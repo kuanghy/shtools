@@ -54,5 +54,6 @@
     cc = cherry-pick --continue
     slog = shortlog
     graph = log --pretty=fuller --graph
-    lo = !git --no-pager log --oneline --decorate
     ls = log --stat
+    lo = !git --no-pager log --oneline --decorate
+    last = !git --no-pager log -n 1
