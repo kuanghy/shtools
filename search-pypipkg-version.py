@@ -16,11 +16,14 @@ from distutils.version import LooseVersion
 
 name = sys.argv[1]
 
-pypi_json_url = "https://pypi.python.org/pypi/{}/json".format(name)
-resp = urllib2.urlopen(pypi_json_url)
-data = json.load(resp)
+try:
+    pypi_json_url = "https://pypi.python.org/pypi/{}/json".format(name)
+    resp = urllib2.urlopen(pypi_json_url, timeout=8)
+    data = json.load(resp)
 
-for ver in sorted([LooseVersion(ver) for ver in data["releases"].keys()], reverse=True):
-    print(ver.vstring)
+    for ver in sorted([LooseVersion(ver) for ver in data["releases"].keys()]):
+        print(ver.vstring)
 
-print("See: https://pypi.python.org/simple/{}/".format(name))
+    print("See: https://pypi.python.org/simple/{}/".format(name))
+except Exception as e:
+    print(e)
