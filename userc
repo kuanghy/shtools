@@ -58,6 +58,10 @@ alias chown='chown -v'
 alias svi="sudo vim"
 alias sgedit="sudo gedit"
 
+# 查看命令位置
+alias type="type -a"
+alias which="which -a"
+
 # 搜索历史命令
 alias hisg="history | grep"
 
