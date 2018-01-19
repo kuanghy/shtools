@@ -129,8 +129,9 @@ def main():
         if match:
             files.append(match.group('name'))
 
+    result = 0
     for check in CHECKS:
-        result = check_files(files, check)
+        result = check_files(files, check) or result
 
     # Unstash changes to the working tree that we had stashed
     subprocess.call(['git', 'reset', '--hard'], stdout=subprocess.PIPE,
