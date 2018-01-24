@@ -28,11 +28,12 @@ alias h1='history 10'
 alias h2='history 20'
 alias h3='history 30'
 
-# 在该命令前加上一个空格来指示history忽略这条命令
-#export HISTCONTROL=ignorespace
+# 设置 history 记录明天的大小
+export HISTSIZE=25000
+export SAVEHIST=10000
 
-# 让history在存储时忽略指定指令
-export HISTIGNORE="pwd:ls:ll:ls –ltr:history:h1:h2:h3"
+# 让 history 在存储时忽略指定指令
+export HISTIGNORE="cd:cd ..:exit:pwd:ls:ll:l:ls –ltr:history:h1:h2:h3:reset:clear"
 
 
 #### Alias command
@@ -41,9 +42,17 @@ export HISTIGNORE="pwd:ls:ll:ls –ltr:history:h1:h2:h3"
 alias sudo='sudo '
 
 # 一些常用的 ls 别名
+alias l='ls -CF'
 alias la='ls -A'
 alias ll='ls -alF'
-alias l='ls -CF'
+alias llh='ls -l --si'
+alias lq='ls -Q'
+alias lr='ls -R'
+alias lrs='ls -lrS'
+alias lrt='ls -lrt'
+alias lrta='ls -lrtA'
+alias lrth='ls -lrth --si'
+alias lrtha='ls -lrthA --si'
 
 # 让 grep 彩色输出
 alias grep='grep --color=auto'
@@ -116,6 +125,9 @@ alias watch-mem="watch -d -n1 'ps aux | grep -v PID | sort -nrk +4 | head -25'"
 # 产生十六进制随机数字符串
 alias hexstr="openssl rand -hex"
 # help: hexstr 16
+
+# 用于查看日志
+alias tf='tail -F'
 
 
 #### Function command
@@ -191,6 +203,11 @@ if [ -x "$(command -v trash)" ]; then
 else
     alias rm="rm -i"
 fi
+
+
+#### 为了安全，拷贝或移动文件时输出详细信息
+alias mv='mv -i'
+alias cp='cp -i'
 
 
 #### 包含 z.sh 脚本，实现目录快速跳转
