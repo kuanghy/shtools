@@ -36,7 +36,7 @@ CHECKS = [
     },
     {
         'output': 'Running PyCodeStyle...',
-        'command': 'pycodestyle -r --ignore=E402,E501,W293 %s',
+        'command': 'pycodestyle -r --ignore=E402,E501,E731,W293 %s',
         'match_files': ['.*\.py$'],
         'ignore_files': ['.*migrations.*'],
         'print_filename': False,
