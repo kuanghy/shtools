@@ -18,7 +18,7 @@ CHECKS = [
         'output': 'Checking for pdb and ipdbs...',
         'command': r'grep -n "import [i]*pdb" %s',
         'match_files': ['.*\.py$'],
-        'ignore_files': ['.*pre-commit'],
+        'ignore_files': ['.*pre-commit', '.*__main__.py'],
         'print_filename': True,
         'exists': False,
         'package': ''
@@ -28,7 +28,7 @@ CHECKS = [
         'command': r'grep -n "^\s*\bprint" %s',
         'match_files': ['.*\.py$'],
         'ignore_files': ['.*migrations.*', '.*management/commands.*',
-                         '.*manage.py', '.*/scripts/.*', '.*/test[s]?/.*',
+                         '.*manage[r]?.py', '.*/scripts/.*', '.*/test[s]?/.*',
                          '.*__main__.py'],
         'print_filename': True,
         'exists': False,
