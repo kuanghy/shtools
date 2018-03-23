@@ -52,6 +52,7 @@
     check = clean -xdfn
     stu = status -uno
     cc = cherry-pick --continue
+    log = log --shortstat
     slog = shortlog
     graph = log --pretty=fuller --graph
     ls = log --stat
