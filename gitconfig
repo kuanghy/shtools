@@ -8,6 +8,8 @@
 	safecrlf = true
     autocrlf = input
 	filemode = true
+	quotepath = false
+	excludesfile = ~/.gitignore
 [color]
     ui = true
 [branch]

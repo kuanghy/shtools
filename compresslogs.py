@@ -125,7 +125,7 @@ if __name__ == "__main__":
         sys.exit(0)
 
     main(logregs,
-        size=options.size if options.size else 20.0,
-        pridian=options.pridian,
-        keep=options.keep,
-        debug=options.debug)
+         size=options.size if options.size else 20.0,
+         pridian=options.pridian,
+         keep=options.keep,
+         debug=options.debug)
