@@ -1,0 +1,12 @@
+# 保持所有主机 SSH 连接的会话
+#   ServerAliveInterval 每隔多少秒向服务端发一次心跳
+#   ServerAliveCountMax 心跳连接最大的尝试次数
+Host *
+    ServerAliveInterval 60
+    ServerAliveCountMax 6
+
+Host konghy bloghost
+    User huoty
+    HostName blog.konghy.cn
+    port 10022
+    IdentityFile ~/.ssh/blog/id_rsa
