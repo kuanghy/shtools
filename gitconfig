@@ -5,8 +5,8 @@
 	helper = store
 [core]
 	editor = vim
-	safecrlf = true
     autocrlf = input
+	safecrlf = true
 	filemode = true
 	quotepath = false
 	excludesfile = ~/.gitignore
