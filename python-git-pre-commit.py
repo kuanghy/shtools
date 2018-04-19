@@ -1,15 +1,19 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
-"""
-Forked From https://gist.github.com/spulec/1364640#file-pre-commit
-"""
+# Copyright (c) Huoty, All rights reserved
+# Author: Huoty <sudohuoty@gmail.com>
+# CreateTime: 2018-04-19 19:14:09
+
+# Forked From https://gist.github.com/spulec/1364640
 
 from __future__ import print_function
 
 import os
 import re
-import subprocess
 import sys
+import subprocess
+
 
 modified = re.compile('^[MA]\s+(?P<name>.*)$')
 
@@ -73,13 +77,12 @@ def exists(cmd, error=True):
     query = 'which %s' % cmd
     code = subprocess.call(query.split(), **params)
     if code != 0 and error:
-        print(highlight('not installed %(command)s' % {'command': cmd}, 'yellow'))
+        print(highlight('not installed %(command)s' % {'command': cmd}, 'red'))
         sys.exit(1)
 
 
 def matches_file(file_name, match_files):
-    return any(
-        re.compile(match_file).match(file_name) for match_file in match_files)
+    return any(re.compile(match_file).match(file_name) for match_file in match_files)
 
 
 def system(*args, **kwargs):
@@ -97,8 +100,8 @@ def check_files(files, check):
         exists(check['package'])
 
     for file_name in files:
-        if 'match_files' not in check or matches_file(file_name,
-                                                      check['match_files']):
+        if 'match_files' not in check or matches_file(
+                file_name, check['match_files']):
             if 'ignore_files' not in check or not matches_file(
                     file_name, check['ignore_files']):
                 out, err = system(check['command'] % file_name,
@@ -108,7 +111,7 @@ def check_files(files, check):
                         prefix = '\t%s:' % file_name
                     else:
                         prefix = '\t'
-                    output_lines = ['%s%s' % (prefix, line) for line in
+                    output_lines = ['{}{}'.format(prefix, line) for line in
                                     out.splitlines()]
                     print(highlight('\n'.join(output_lines), 'red'))
                     if err:
@@ -118,10 +121,6 @@ def check_files(files, check):
 
 
 def main():
-    # Stash any changes to the working tree that are not going to be committed
-    subprocess.call(['git', 'stash', '-u', '--keep-index'],
-                    stdout=subprocess.PIPE)
-
     files = []
     out, err = system('git', 'status', '--porcelain')
     for line in out.splitlines():
@@ -133,13 +132,8 @@ def main():
     for check in CHECKS:
         result = check_files(files, check) or result
 
-    # Unstash changes to the working tree that we had stashed
-    subprocess.call(['git', 'reset', '--hard'], stdout=subprocess.PIPE,
-                    stderr=subprocess.PIPE)
-    subprocess.call(['git', 'stash', 'pop', '--quiet', '--index'],
-                    stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    sys.exit(result)
+    return result
 
 
 if __name__ == '__main__':
-    main()
+    sys.exit(main())
