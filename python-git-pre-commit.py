@@ -15,7 +15,10 @@ import sys
 import subprocess
 
 
-modified = re.compile('^[MA]\s+(?P<name>.*)$')
+if sys.version_info[0] < 3:
+    reload(sys)
+    sys.setdefaultencoding("utf-8")
+
 
 CHECKS = [
     {
@@ -89,6 +92,8 @@ def system(*args, **kwargs):
     kwargs.setdefault('stdout', subprocess.PIPE)
     proc = subprocess.Popen(args, **kwargs)
     out, err = proc.communicate()
+    out = out if out is None or isinstance(out, str) else out.decode("utf-8")
+    err = err if err is None or isinstance(err, str) else err.decode("utf-8")
     return out, err
 
 
@@ -121,12 +126,21 @@ def check_files(files, check):
 
 
 def main():
+    out, err = system('git', 'status', '--porcelain', stderr=subprocess.PIPE)
+    if err:
+        print(highlight(err, 'red'), end='')
+        return 1
+
+    modified = re.compile('^[MA]\s+(?P<name>.*)$')
+
     files = []
-    out, err = system('git', 'status', '--porcelain')
     for line in out.splitlines():
         match = modified.match(str(line))
         if match:
             files.append(match.group('name'))
+
+    if not files:
+        return 0
 
     result = 0
     for check in CHECKS:
