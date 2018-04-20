@@ -65,7 +65,7 @@ CHECKS = [
 def highlight(text, status):
     attrs = []
     colors = {
-        'green': '32', 'red': '31', 'yellow': '33'
+        'red': '31', 'green': '32', 'yellow': '33'
     }
     if not sys.stdout.isatty():
         return text
@@ -99,7 +99,7 @@ def system(*args, **kwargs):
 
 def check_files(files, check):
     result = 0
-    print(highlight(check['output'], 'yellow'))
+    print(highlight(check['output'], 'green'))
 
     if check['exists'] and check['package']:
         exists(check['package'])
@@ -146,6 +146,9 @@ def main():
     for check in CHECKS:
         result = check_files(files, check) or result
 
+    if result != 0:
+        prompt_message = "Commit failed, above problems need to be solved"
+        print("\n", highlight(prompt_message, 'yellow'), sep='')
     return result
 
 
