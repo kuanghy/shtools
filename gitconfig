@@ -67,5 +67,5 @@
     loh = !git --no-pager log -20 --oneline --decorate
     last = !git --no-pager log -n 1
     grep = git log --grep
-    pushcb = !git push origin `git cbr`
-    pullcb = !git pull origin `git cbr`
+    pscb = !git push origin `git cbr`
+    plcb = !git pull origin `git cbr`
