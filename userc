@@ -28,7 +28,7 @@ alias h1='history 10'
 alias h2='history 20'
 alias h3='history 30'
 
-# 设置 history 记录明天的大小
+# 设置 history 记录命令的大小
 export HISTSIZE=25000
 export SAVEHIST=10000
 
