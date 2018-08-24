@@ -5,4 +5,8 @@
 # Script starts from here:
 
 # Aria2 RPC #
-/usr/local/bin/aria2c --enable-rpc=true --input-file=/Users/name/.aria2/aria2.session --conf-path=/Users/name/.aria2/aria2.conf
+/Users/huayong/.local/aria2/bin/aria2c \
+    --enable-rpc=true \
+    --input-file=/Users/huayong/.aria2/aria2.session \
+    --conf-path=/Users/huayong/.aria2/aria2.conf \
+    "$@"
