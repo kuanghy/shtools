@@ -91,7 +91,9 @@ alias websiteget="wget --random-wait -r -p -e robots=off -U mozilla"
 alias listen="lsof -P -i -n"
 
 # 获取公网IP地址和主机名
-alias ipaddr="curl ident.me"
+# alias ipaddr="curl ident.me"
+# alias ipaddr="curl ifconfig.me"
+alias ipaddr="curl cip.cc"
 
 # 获取操作系统位数
 alias osbit="getconf LONG_BIT"
