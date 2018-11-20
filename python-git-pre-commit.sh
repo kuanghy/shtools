@@ -9,6 +9,7 @@ if git rev-parse --verify HEAD >/dev/null 2>&1; then
 else
     # Initial commit: diff against an empty tree object
     against=4b825dc642cb6eb9a060e54bf8d69288fbee4904
+    # or `git hash-object -t tree /dev/null`
 fi
 
 ret=0
