@@ -10,15 +10,13 @@ c.AliasManager.user_aliases = [
     ('ps', 'ps aux'),
     ('psg', 'ps aux | grep -v grep | grep'),
     ('topcpu', 'ps aux --sort -pcpu | head'),
-    ('git', 'git'),
-    ('pytest', 'py.test -xvvls'),
 ]
 
 # lines of code to run at IPython startup.
 c.InteractiveShellApp.exec_lines = [
+    'import os',
+    'import sys'
     'from pprint import pprint',
-    'import numpy as np',
-    'import pandas as pd',
 ]
 
 # A list of dotted module names of IPython extensions to load.
