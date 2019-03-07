@@ -69,7 +69,7 @@
     grep = git log --grep
     recommit = !git add -A && git commit -a --amend
     uncommit = reset --soft HEAD^
-    unstage = git reset HEAD
+    unstage = reset HEAD
     assume = update-index --assume-unchanged
     unassume = update-index --no-assume-unchanged
     assumed = !git ls-files -v | grep ^h | cut -c 3-
