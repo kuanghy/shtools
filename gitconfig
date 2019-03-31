@@ -45,6 +45,7 @@
     rbf = rebase FETCH_HEAD
     mt = mergetool
     br = branch
+    brv = branch -vv
     bra = branch -a
     brr = branch -r
     cbr = rev-parse --abbrev-ref HEAD
@@ -68,6 +69,7 @@
     last = !git --no-pager log -n 1
     grep = git log --grep
     recommit = !git add -A && git commit -a --amend
+    apcommit = !git add --all && git commit --amend --no-edit
     uncommit = reset --soft HEAD^
     unstage = reset HEAD
     assume = update-index --assume-unchanged
