@@ -2,7 +2,7 @@
 #     Filename @  .userc
 #       Author @  Huoty
 #  Create date @  2015-06-02 21:09:01
-#  Description @  Bash user configuration
+#  Description @  Bash/Zsh user configuration
 #########################################################################
 
 
@@ -54,6 +54,12 @@ alias lrta='ls -lrtA'
 alias lrth='ls -lrth --si'
 alias lrtha='ls -lrthA --si'
 
+# 以树形结构递归地显示目录结构
+alias lsr="ls -R | grep :$ | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
+
+# 对当前目录文件按大小排序（仅 Linux 环境可用）
+alias lss="ls | xargs -i du -sh ./{} | sort -h"
+
 # 让 grep 彩色输出
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
@@ -77,11 +83,11 @@ alias hisg="history | grep"
 # 搜索进程
 alias psg="ps aux | grep -v grep | grep"
 
-# 以树形结构递归地显示目录结构
-alias lsr="ls -R | grep :$ | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
+# 限制 ping 的输出次数
+alias ping="ping -c 10"
 
-# 对当前目录文件按大小排序（仅 Linux 环境可用）
-alias lss="ls | xargs -i du -sh ./{} | sort -h"
+# Wget 默认断点下载
+alias wget="wget -c"
 
 # 下载整个网站
 alias websiteget="wget --random-wait -r -p -e robots=off -U mozilla"
@@ -164,6 +170,8 @@ genpasswd() {
     fi
 }
 
+alias genpasswd2="openssl rand -base64 20"
+
 # 生成一个只用左手便可输入的随机密码
 lrandpw() { < /dev/urandom tr -dc '12345!@#$%qwertQWERTasdfgASDFGzxcvbZXCVB' | head -c${1:-'$1'};echo; }
 
@@ -226,8 +234,14 @@ export PYTHONUNBUFFERED=1        # 不缓冲标准流
 alias greppy="find . -name '*.py' | xargs grep -n --color"  # 在 Python 代码中查找
 alias ackpy="ack --python"
 alias pytest="py.test -xvvls"
-alias simplehttpserver="python -m SimpleHTTPServer"  # 启动一个简单的 http 服务器
-# alias simplehttpserver="python -m http.server"  # python3
+
+# 启动一个简单的 HTTP 服务
+PYVERSION=$(python -c "import sys; print(sys.version_info[0])")
+if [ $PYVERSION -gt 2 ]; then
+    alias simplehttpserver="python -m http.server"  # python3
+else
+    alias simplehttpserver="python -m SimpleHTTPServer"
+fi
 
 # 清理 Python 编译产生的二进制文件
 function pyclean() {
