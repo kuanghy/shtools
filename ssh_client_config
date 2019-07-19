@@ -1,12 +1,36 @@
-# 保持所有主机 SSH 连接的会话
-#   ServerAliveInterval 每隔多少秒向服务端发一次心跳
-#   ServerAliveCountMax 心跳连接最大的尝试次数
 Host *
+    # 保持所有主机 SSH 连接的会话
+    # 每隔一段时间向服务器发一次心跳
     ServerAliveInterval 60
+    # 心跳连接最大的尝试
     ServerAliveCountMax 6
+    # 开启秘钥认证转发
+    ForwardAgent yes
 
 Host konghy bloghost
     User huoty
     HostName blog.konghy.cn
-    port 10022
+    port 22
     IdentityFile ~/.ssh/blog/id_rsa
+
+# 跳板机
+Host jumpbox
+    User huayong
+    HostName jumpbox
+    port 22
+
+# 通过跳板机登录测试服务器
+# 以 test- 加上服务器名的形式，仅支持 server 账号
+Host test-*
+    User server
+    port 22
+    IdentityFile ~/.ssh/jumpbox/id_rsa
+    ProxyCommand ssh jumpbox -W $(echo %h | awk -F 'test-' '{print $2}'):%p -q
+
+# 通过跳板机登录服务器
+Host server00
+    User server
+    HostName server00
+    port 22
+    IdentityFile ~/.ssh/jumpbox/id_rsa
+    ProxyCommand ssh jumpbox -W %h:%p -q
