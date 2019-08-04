@@ -79,6 +79,7 @@ alias which="which -a"
 
 # 搜索历史命令
 alias hisg="history | grep"
+alias gh="history | grep"
 
 # 搜索进程
 alias psg="ps aux | grep -v grep | grep"
@@ -137,6 +138,12 @@ alias hexstr="openssl rand -hex"
 # 用于查看日志
 alias tf='tail -F'
 
+# 只查看挂载的驱动器，仅支持 Linux 平台
+alias mnt='mount | grep -E ^/dev | column -t'
+
+# 使用 rsync 代替 cp 拷贝文件
+alias cpv='rsync -ah --info=progress2'
+
 
 #### Function command
 
@@ -145,6 +152,14 @@ mcd() { mkdir -p "$1"; cd "$1"; }
 
 # 进入目录并列出目录下的文件
 cdl() { cd "$1"; ls; }
+
+cl() {
+    DIR="$*";
+    if [ $# -lt 1 ]; then
+        DIR=$HOME;
+    fi;
+    builtin cd "${DIR}" && ls -F
+}
 
 # 文件 MD5 校验
 md5check() { md5sum "$1" | grep "$2"; }
@@ -224,6 +239,10 @@ alias cp='cp -i'
 if [ -f ~/.z.sh ]; then
     source ~/.z.sh
 fi
+
+
+#### Git 相关设置
+alias cg='cd `git rev-parse --show-toplevel`'  # 回到项目的顶级目录
 
 
 #### Python 相关设置
