@@ -1,9 +1,6 @@
-#########################################################################
-#     Filename @  .userc
-#       Author @  Huoty
-#  Create date @  2015-06-02 21:09:01
-#  Description @  Bash/Zsh user configuration
-#########################################################################
+# Bash/Zsh user shell configuration
+# Author: Huoty <sudohuoty@163.com>
+# Created in 2015-06-02
 
 
 #### 终端 Bash 命令提示符样式
@@ -196,6 +193,7 @@ extract() {
       case $1 in
         *.tar.bz2)   tar xjvf $1    ;;
         *.tar.gz)    tar xzvf $1    ;;
+        *.tar.xz)    tar xJvf $1    ;;
         *.bz2)       bunzip2 $1     ;;
         *.rar)       unrar x $1     ;;
         *.gz)        gunzip $1      ;;
