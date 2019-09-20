@@ -271,3 +271,19 @@ function pyclean() {
 export CHEAT_PATH="$HOME/.local/cheat:/usr/local/share/cheat"
 export CHEAT_COLORS=true
 CHEAT_HIGHLIGHT=green
+
+# Zsh 专有配置
+if [[ $SHELL == *'zsh' ]]; then
+    # 消除历史记录中的重复条目
+    setopt hist_ignore_dups
+
+    # 忽略已空格开始的命令，不添加到历史命令记录中
+    setopt hist_ignore_space
+
+    # 一些简单的命令不记录入历史命令中
+    HISTORY_IGNORE='(cd|exit|pwd|history|h[123]|reset|clear|[bf]g *|cd ..|l[alsh]#( *)#|less *|vim# *)'
+
+    # 会话间不共享历史命令
+    unsetopt inc_append_history
+    unsetopt share_history
+fi
