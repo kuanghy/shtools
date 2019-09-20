@@ -139,7 +139,7 @@ alias tf='tail -F'
 alias mnt='mount | grep -E ^/dev | column -t'
 
 # 使用 rsync 代替 cp 拷贝文件
-alias cpv='rsync -ah --info=progress2'
+alias cpv='rsync -aHt --progress'
 
 
 #### Function command
@@ -266,3 +266,8 @@ function pyclean() {
     find ${ZSH_PYCLEAN_PLACES} -type f -name "*.py[co]" -delete
     find ${ZSH_PYCLEAN_PLACES} -type d -name "__pycache__" -delete
 }
+
+# Cheat 工具相关设置
+export CHEAT_PATH="$HOME/.local/cheat:/usr/local/share/cheat"
+export CHEAT_COLORS=true
+CHEAT_HIGHLIGHT=green
