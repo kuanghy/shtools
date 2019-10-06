@@ -272,6 +272,11 @@ export CHEAT_PATH="$HOME/.local/cheat:/usr/local/share/cheat"
 export CHEAT_COLORS=true
 CHEAT_HIGHLIGHT=green
 
+# Mac OSX 专有配置
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    alias sourcetree="open -a SourceTree"
+fi
+
 # Zsh 专有配置
 if [[ $SHELL == *'zsh' ]]; then
     # 消除历史记录中的重复条目
