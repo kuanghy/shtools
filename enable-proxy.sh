@@ -4,7 +4,7 @@
 # Author: Huoty <sudohuoty@gmail.com>
 # Script starts from here:
 
-proxy=offlinehost:58894
+proxy=localhost:12380
 
 export http_proxy=$proxy
 export https_proxy=$proxy
