@@ -213,7 +213,7 @@ extract() {
 
 
 #### 设置常用环境变量
-export PATH="$HOME/.local/bin/:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 export CDPATH=".:$HOME:$HOME/aboutme:$HOME/Aboutme:$HOME/work:$HOME/Work"
 
 
