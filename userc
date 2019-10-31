@@ -27,7 +27,11 @@ alias h3='history 30'
 
 # 设置 history 记录命令的大小
 export HISTSIZE=25000
+export HISTFILESIZE=25000
 export SAVEHIST=10000
+
+# 不要记录相同的命令
+export HISTCONTROL=ignoredups
 
 # 让 history 在存储时忽略指定指令
 export HISTIGNORE="cd:cd ..:exit:pwd:ls:ll:l:ls –ltr:history:h1:h2:h3:reset:clear"
