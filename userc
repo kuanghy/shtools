@@ -237,6 +237,11 @@ alias mv='mv -i'
 alias cp='cp -i'
 
 
+#### 如果系统中有 vim，则使用其作为默认的编辑器
+if [ -x "$(command -v vim)" ]; then
+    export EDITOR='vim'
+fi
+
 #### 包含 z.sh 脚本，实现目录快速跳转
 if [ -f ~/.z.sh ]; then
     source ~/.z.sh
