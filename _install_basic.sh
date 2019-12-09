@@ -4,32 +4,23 @@
 # CreateTime: 2019-10-14 11:10:18
 # Script starts from here:
 
-usage()
-{
-    echo -e "Install shell basic configuration\n"
-    echo "--"
-}
+PRO_DIR=~/Aboutme
 
-SCRIPT_DIR="$( cd $(dirname $0); pwd )"
-
+mkdir -p $PRO_DIR
 mkdir -p ~/.local/bin
 
-ln -s $SCRIPT_DIR/userc ~/.userc
-ln -s $SCRIPT_DIR/gitconfig ~/.gitconfig
+cd $PRO_DIR
 
-while test $# -gt 0
-do
-    case "$1" in
-        --opt1) echo "option 1"
-            ;;
-        --opt2) echo "option 2"
-            ;;
-        --*) echo "bad option $1"
-            ;;
-        *) echo "argument $1"
-            ;;
-    esac
-    shift
-done
+git clone https://github.com/kuanghy/shtools.git
+TOOL_DIR=$PRO_DIR/shtools
+cd $TOOL_DIR
+ln -s $TOOL_DIR/userc ~/.userc
+ln -s $TOOL_DIR/gitconfig ~/.gitconfig
+
+git clone https://github.com/kuanghy/kictor.git
+ln -s $PRO_DIR/kictor/kict.py ~/.local/bin/kict
+
+git clone https://github.com/kuanghy/vimconfig.git
+(cd vimconfig/vim-pro && make install)
 
 exit 0
