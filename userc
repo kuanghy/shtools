@@ -84,6 +84,7 @@ alias gh="history | grep"
 
 # 搜索进程
 alias psg="ps aux | grep -v grep | grep"
+alias gp="ps aux | grep -v grep | grep -i"
 
 # 限制 ping 的输出次数
 alias ping="ping -c 10"
