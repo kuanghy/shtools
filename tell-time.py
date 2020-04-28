@@ -43,9 +43,12 @@ def start_timer():
         elif 30 < minute:
             next_clock = next_clock.replace(minute=0)
             next_clock += datetime.timedelta(hours=1)
-        log.info("Next clock: %s", next_clock)
         rest_of_time = (next_clock - now).total_seconds()
-        log.info("Began to sleep, the rest of time: %s",
+        if rest_of_time < 0:
+            rest_of_time = 60
+        else:
+            log.info("Next clock: %s", next_clock)
+        log.info("Sleeping, the rest of time: %s",
                  datetime.timedelta(seconds=rest_of_time))
         time.sleep(rest_of_time)
 
