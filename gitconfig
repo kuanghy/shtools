@@ -79,3 +79,4 @@
     plcb = !git pull origin `git cbr`
     psar = !git remote  | xargs -L1 -I$ git push $
     wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset --hard HEAD~1
+    alias = config --get-regexp alias
