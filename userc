@@ -227,6 +227,9 @@ export CDPATH=".:$HOME:$HOME/aboutme:$HOME/Aboutme:$HOME/work:$HOME/Work"
 #   Ubuntu: apt-get install trash-cli
 #   Mac OS: brew install trash
 if [ -x "$(command -v trash)" ]; then
+    if [ ! -x "$(command -v grm)" ]; then
+        alias grm=/bin/rm
+    fi
     alias rm='echo "This is not the command you are looking for."; false'
 else
     alias rm="rm -i"
