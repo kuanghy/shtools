@@ -1,8 +1,7 @@
 Host *
-    # 保持所有主机 SSH 连接的会话
-    # 每隔一段时间向服务器发一次心跳
+    # 每隔一段时间向服务端发送一次心跳以保持会话连接
     ServerAliveInterval 60
-    # 心跳连接最大的尝试
+    # 指定心跳连接的最大尝试次数
     ServerAliveCountMax 6
     # 开启秘钥认证转发
     ForwardAgent yes
