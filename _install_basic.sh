@@ -14,7 +14,7 @@ cd $PRO_DIR
 git clone https://github.com/kuanghy/shtools.git
 TOOL_DIR=$PRO_DIR/shtools
 cd $TOOL_DIR
-ln -s $TOOL_DIR/userc ~/.userc
+ln -s $TOOL_DIR/shrc ~/.shrc
 ln -s $TOOL_DIR/gitconfig ~/.gitconfig
 
 git clone https://github.com/kuanghy/kictor.git
