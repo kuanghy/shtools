@@ -64,6 +64,8 @@
     ls = log --stat
     graph = log --pretty=fuller --graph
     slog = shortlog
+    fec = !sh -c 'git fetch $1 $2 && git checkout $2' -
+    feoc = !sh -c 'git fetch origin $1 && git checkout $1' -
     lo = !git --no-pager log --oneline --decorate
     loh = !git --no-pager log -20 --oneline --decorate
     last = !git --no-pager log -n 1
