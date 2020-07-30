@@ -17,5 +17,7 @@ for repo in ${repos[@]}; do
     cd $repo
     commit_msg="update at $(date +%Y%m%d%H%M%S)"
     echo "[$(date +'%Y-%m-%d %H:%M:%S')] - trying to commit and push repo ${repo}"
-    git add -A && git commit -am "$commit_msg" && git remote  | xargs -L1 -I$ git push $
+    git add -A && git commit -am "$commit_msg" && \
+        git pull origin `git rev-parse --abbrev-ref HEAD` && \
+        git remote | xargs -L1 -I$ git push $
 done
