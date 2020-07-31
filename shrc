@@ -280,11 +280,26 @@ function pyclean() {
     find ${ZSH_PYCLEAN_PLACES} -type d -name "__pycache__" -delete
 }
 
-# Cheat 工具相关设置
+
+#### Cheat 工具相关设置
 export CHEAT_PATH="$HOME/.local/cheat:/usr/local/share/cheat"
 export CHEAT_COLORS=true
 CHEAT_HIGHLIGHT=green
 
+
+#### Docker 相关设置
+if [ -x "$(command -v docker" ]; then
+    alias docker-exec="docker exec -ti --env COLUMNS=`tput cols` --env LINES=`tput lines`"
+    alias docker-clear="docker ps -aq | xargs docker rm"
+    alias docker-killall="docker ps -q | xargs docker kill"
+    alias docker-pid="docker inspect --format '{{.State.Pid}}'"
+    alias docker-ip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
+
+    docker-bash() { docker run -it $1 /bin/bash; }
+fi
+
+
+#### 平台相关设置
 # Mac OSX 专有配置
 if [[ "$OSTYPE" == "darwin"* ]]; then
     alias sourcetree="open -a SourceTree"
