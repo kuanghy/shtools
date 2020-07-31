@@ -288,8 +288,8 @@ CHEAT_HIGHLIGHT=green
 
 
 #### Docker 相关设置
-if [ -x "$(command -v docker" ]; then
-    alias docker-exec="docker exec -ti --env COLUMNS=`tput cols` --env LINES=`tput lines`"
+if [ -x "$(command -v docker)" ]; then
+    alias docker-exec="docker exec -ti --env COLUMNS=$(tput cols) --env LINES=$(tput lines)"
     alias docker-clear="docker ps -aq | xargs docker rm"
     alias docker-killall="docker ps -q | xargs docker kill"
     alias docker-pid="docker inspect --format '{{.State.Pid}}'"
