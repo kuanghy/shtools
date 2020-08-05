@@ -146,10 +146,13 @@ alias mnt='mount | grep -E ^/dev | column -t'
 # 使用 rsync 代替 cp 拷贝文件
 alias cpv='rsync -aHt --progress'
 
+# Tmux 快捷命令
+alias tmuxat='tmux attach-session -t'
+
 
 #### Function command
 
-#  创建目录并进入
+# 创建目录并进入
 mcd() { mkdir -p "$1"; cd "$1"; }
 
 # 进入目录并列出目录下的文件
@@ -161,6 +164,15 @@ cl() {
         DIR=$HOME;
     fi;
     builtin cd "${DIR}" && ls -F
+}
+
+# 清理屏幕输出
+cls() {
+    if [[ "$TERM" =~ "screen".* && -n "$TMUX" ]]; then
+        tmux clear-history
+    else
+        clear
+    fi
 }
 
 # 文件 MD5 校验
