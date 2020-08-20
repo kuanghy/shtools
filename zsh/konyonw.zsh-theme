@@ -25,7 +25,7 @@ ZSH_THEME_GIT_PROMPT_SUFFIX="%{$fg_bold[cyan]%})%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}"
 
 # Add 3 cyan ✗s if this branch is diiirrrty! Dirty branch!
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg_bold[red]%}●"
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg_bold[red]%} +"
 
 # Defined prompt body
 PROMPT_BODY_="$CURRENT_USER_%{$fg_bold[red]%}@%{$reset_color%}$LOCAL_MACHINE_ $CURRENT_PATH_"
