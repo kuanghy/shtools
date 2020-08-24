@@ -1,0 +1,91 @@
+# Global gitignore config
+# Copy this file to ~/.gitignore, and add git config:
+# git config --global core.excludesfile ~/.gitignore
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# MacOSX
+.DS_Store
+.AppleDouble
+.LSOverride
+.AppleDB
+Network Trash Folder
+Temporary Items
+.apdisk
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Backup files
+*.bak
+*.gho
+*.ori
+*.orig
+*.tmp
+
+# MicrosoftOffice
+~$*.doc*
+Backup of *.doc*
+~$*.xls*
+*.xlk
+~$*.ppt*
+*.~vsd*
+
+# Editor temporary files
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+.netrwhist
+*~
+[._]*.un~
+tags
+
+.vscode/
+*.code-workspace
+.history/
+
+sftp-config.json
+sftp-config-*.json
+sftp-config-alt*.json
+*.sublime-workspace
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+Package Control.last-run
+Package Control.ca-list
+Package Control.ca-bundle
+Package Control.system-ca-bundle
+Package Control.cache/
+Package Control.ca-certs/
+Package Control.merged-ca-bundle
+Package Control.user-ca-bundle
+oscrypto-ca-bundle.crt
+bh_unicode_properties.cache
+
+.ftpconfig
