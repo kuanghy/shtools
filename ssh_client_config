@@ -1,3 +1,4 @@
+# 缺省配置
 Host *
     # 每隔一段时间向服务端发送一次心跳以保持会话连接
     ServerAliveInterval 60
@@ -5,6 +6,13 @@ Host *
     ServerAliveCountMax 6
     # 开启秘钥认证转发
     ForwardAgent yes
+    # 登录时的日志输出级别
+    # 值包括：QUIET, FATAL, ERROR, INFO, VERBOSE, DEBUG1, DEBUG2, DEBUG3
+    LogLevel ERROR
+
+# 包含其它配置文件（仅 7.3p1 及更高版本支持）
+# 使用 ssh -V 查看版本
+Include config.d/*
 
 Host konghy bloghost
     User huoty
