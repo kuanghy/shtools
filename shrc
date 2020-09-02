@@ -175,6 +175,13 @@ cls() {
     fi
 }
 
+# 如果是 Cygwin 环境则尝试使用 procps 列出进程
+if [[ "$OSTYPE" == "cygwin"* ]]; then
+    pps() {
+        procps -wwFAH
+    }
+fi
+
 # 文件 MD5 校验
 md5check() { md5sum "$1" | grep "$2"; }
 ## help: md5check [file] [key]
