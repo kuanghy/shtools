@@ -319,13 +319,32 @@ fi
 
 
 #### 平台相关设置
-# Mac OSX 专有配置
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    alias sourcetree="open -a SourceTree"
+case "$(uname -s)" in
+    Darwin)  # Mac OS X
+        # [[ "$OSTYPE" == "darwin"* ]]
+        alias sourcetree="open -a SourceTree"
 
-    # 用于微信多开
-    alias wechat="nohup /Applications/WeChat.app/Contents/MacOS/WeChat > /dev/null 2>&1 &"
-fi
+        # 用于微信多开
+        alias wechat="nohup /Applications/WeChat.app/Contents/MacOS/WeChat > /dev/null 2>&1 &"
+        ;;
+    CYGWIN*|MINGW32*|MSYS*|MINGW*)  # MS Windows
+        # 将常用 Windows 命令输出转换为 utf8，解决 Windows 自有命令显示乱码问题
+        _runiconv () { _cmd=$1; shift; $_cmd $* 2>&1 | iconv -f gbk -t utf8; }
+        alias where='_runiconv where'
+        alias ping='_runiconv ping'
+        alias ifconfig='_runiconv ipconfig'
+        alias netstat='_runiconv netstat'
+        alias tasklist='_runiconv tasklist'
+        alias tracert='_runiconv tracert'
+        alias route='_runiconv route'
+        alias cygrunsrv='_runiconv cygrunsrv'
+        alias tree='_runiconv tree'
+        ;;
+    Linux)  # Linux
+        ;;
+    *)  # Other OS
+        ;;
+esac
 
 # Zsh 专有配置
 if [[ $SHELL == *'zsh' ]]; then
