@@ -235,6 +235,11 @@ extract() {
 }
 ## help: extract [archive file]
 
+# 查看 CSV 文件
+function pretty-csv() {
+    column -t -s, -n "$@" | less -F -S -X -K
+}
+
 
 #### 设置常用环境变量
 export PATH="$HOME/.local/bin:$PATH"
