@@ -315,6 +315,9 @@ fi
 # Mac OSX 专有配置
 if [[ "$OSTYPE" == "darwin"* ]]; then
     alias sourcetree="open -a SourceTree"
+
+    # 用于微信多开
+    alias wechat="nohup /Applications/WeChat.app/Contents/MacOS/WeChat > /dev/null 2>&1 &"
 fi
 
 # Zsh 专有配置
