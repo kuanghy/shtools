@@ -290,11 +290,13 @@ alias ackpy="ack --python"
 alias pytest="py.test -xvvls"
 
 # 启动一个简单的 HTTP 服务
-PYVERSION=$(python -c "import sys; print(sys.version_info[0])")
-if [ $PYVERSION -gt 2 ]; then
-    alias simplehttpserver="python -m http.server"  # python3
-else
-    alias simplehttpserver="python -m SimpleHTTPServer"
+if [ -x "$(command -v python)" ]; then
+    PYVERSION=$(python -c "import sys; print(sys.version_info[0])")
+    if [ $PYVERSION -gt 2 ]; then
+        alias simplehttpserver="python -m http.server"  # python3
+    else
+        alias simplehttpserver="python -m SimpleHTTPServer"
+    fi
 fi
 
 # 清理 Python 编译产生的二进制文件
