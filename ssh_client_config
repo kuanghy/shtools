@@ -12,7 +12,7 @@ Host *
 
 # 包含其它配置文件（仅 7.3p1 及更高版本支持）
 # 使用 ssh -V 查看版本
-Include config.d/*
+Include conf.d/*
 
 Host konghy bloghost
     User huoty
