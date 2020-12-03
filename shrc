@@ -358,6 +358,11 @@ if [[ $SHELL == *'zsh' ]]; then
     # 消除历史记录中的重复条目
     setopt hist_ignore_dups
 
+    # 让 history 命令输出执行日期
+    alias gh='history -i | grep'
+    alias hisg='history -i | grep'
+    alias historty='history -i'
+
     # 忽略已空格开始的命令，不添加到历史命令记录中
     setopt hist_ignore_space
 
