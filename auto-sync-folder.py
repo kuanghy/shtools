@@ -29,7 +29,11 @@ class Config(object):
 
     def __getattr__(self, name):
         try:
-            return self._mapping[name.upper()]
+            _name = name.upper()
+            value = self._mapping[_name]
+            if _name == "SRC_PATH":
+                value = os.path.expanduser(value)
+            return value
         except KeyError:
             raise AttributeError("'{}' object has no attribute '{}'".format(
                 self.__class__.__name__, name
