@@ -336,15 +336,14 @@ case "$(uname -s)" in
         ;;
     CYGWIN*|MINGW32*|MSYS*|MINGW*)  # MS Windows
         # 将常用 Windows 命令输出转换为 utf8，解决 Windows 自有命令显示乱码问题
-        _runiconv () { _cmd=$1; shift; $_cmd $* 2>&1 | iconv -f gbk -t utf8; }
+        _runiconv () { _cmd=$1; shift; $_cmd $* 2>&1 | iconv -f gbk -t UTF-8; }
         alias where='_runiconv where'
-        alias ping='_runiconv ping'
         alias ifconfig='_runiconv ipconfig'
         alias netstat='_runiconv netstat'
         alias tasklist='_runiconv tasklist'
         alias tracert='_runiconv tracert'
         alias route='_runiconv route'
-        alias cygrunsrv='_runiconv cygrunsrv'
+        alias ping='_runiconv ping'
         alias tree='_runiconv tree'
         ;;
     Linux)  # Linux
