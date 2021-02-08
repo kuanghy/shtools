@@ -284,6 +284,7 @@ alias cg='cd `git rev-parse --show-toplevel`'  # 回到项目的顶级目录
 export PYTHONIOENCODING="UTF-8"  # 标准流的编码
 export PYTHONUNBUFFERED=1        # 不缓冲标准流
 # export PYTHONOPTIMIZE=1    # 优化字节码
+export PIP_DEFAULT_TIMEOUT=60    # Pip 的超时时间
 
 alias greppy="find . -name '*.py' | xargs grep -n --color"  # 在 Python 代码中查找
 alias ackpy="ack --python"
