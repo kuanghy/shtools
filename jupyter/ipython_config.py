@@ -15,9 +15,15 @@ c.AliasManager.user_aliases = [
 # lines of code to run at IPython startup.
 c.InteractiveShellApp.exec_lines = [
     'import os',
-    'import sys'
+    'import sys',
     'from pprint import pprint',
 ]
+
+## List of files to run at IPython startup.
+#  These files need to be in the cwd, the ipythondir or be absolute paths.
+#  ipythondir default is usually $HOME/.ipython,
+#  can also be specified through the environment variable IPYTHONDIR
+c.InteractiveShellApp.exec_files = []
 
 # A list of dotted module names of IPython extensions to load.
 c.InteractiveShellApp.extensions = [
