@@ -10,6 +10,7 @@ c.AliasManager.user_aliases = [
     ('ps', 'ps aux'),
     ('psg', 'ps aux | grep -v grep | grep'),
     ('topcpu', 'ps aux --sort -pcpu | head'),
+    ('git', 'git'),
 ]
 
 # lines of code to run at IPython startup.
