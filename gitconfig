@@ -82,3 +82,7 @@
     psar = !git remote  | xargs -t -L1 -I$ git push $ `git cbr`
     wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset --hard HEAD~1
     alias = config --get-regexp alias
+[http]
+	postBuffer = 524288000
+[https]
+	postBuffer = 524288000
