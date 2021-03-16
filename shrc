@@ -195,6 +195,13 @@ statmem() { ps aux | awk '{mem += $6} END {print mem/1024/1024}'; }
 # 查看进程打开的文件描述符
 pfds() { ls -l /proc/$1/fd; }
 
+# 简单的终端脚本选择器
+pick-color() {
+    for i in {0..255}; do
+        printf "\x1b[38;5;${i}mcolour${i}\n"
+    done
+}
+
 # 生成随机密码
 genpasswd() {
     if [ $# -gt 1 ]; then
