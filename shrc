@@ -83,7 +83,7 @@ alias hisg="history | grep"
 alias gh="history | grep"
 
 # 搜索进程
-alias psg="ps aux | grep -v grep | grep"
+alias psg="ps aux | grep -v grep | grep -i"
 alias gp="ps aux | grep -v grep | grep -i"
 
 # 限制 ping 的输出次数
@@ -191,6 +191,18 @@ tcpstat() { netstat -n | awk '/^tcp/ {++state[$NF]} END {for(key in state) print
 
 # 粗略统计系统所有进程占用的总内存
 statmem() { ps aux | awk '{mem += $6} END {print mem/1024/1024}'; }
+
+# 查看指定用户的进程
+psu() {
+    if [[ -n $1 ]]; then
+        user=$1
+    else
+        user=$(whoami)
+    fi
+    ps -u $user -o \
+        user,pid,ppid,pgid,sid,ni,tty,stat,pcpu,pmem,vsz,rss,start,time,cmd \
+        --sort -pcpu,-pmem
+}
 
 # 查看进程打开的文件描述符
 pfds() { ls -l /proc/$1/fd; }
