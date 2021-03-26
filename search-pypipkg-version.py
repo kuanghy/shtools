@@ -9,7 +9,11 @@ from __future__ import print_function
 
 import sys
 import json
-import urllib2
+
+try:
+    from urllib.request import urlopen
+except ImportError:
+    from urllib2 import urlopen
 
 from distutils.version import LooseVersion
 
@@ -17,13 +21,13 @@ from distutils.version import LooseVersion
 name = sys.argv[1]
 
 try:
-    pypi_json_url = "https://pypi.python.org/pypi/{}/json".format(name)
-    resp = urllib2.urlopen(pypi_json_url, timeout=8)
+    pypi_json_url = "https://pypi.org/pypi/{}/json".format(name)
+    resp = urlopen(pypi_json_url, timeout=8)
     data = json.load(resp)
 
     for ver in sorted([LooseVersion(ver) for ver in data["releases"].keys()]):
         print(ver.vstring)
 
-    print("See: https://pypi.python.org/simple/{}/".format(name))
+    print("See: https://pypi.org/simple/{}/".format(name))
 except Exception as e:
     print(e)
