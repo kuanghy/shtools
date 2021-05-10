@@ -125,10 +125,10 @@ alias topmem="ps aux | grep -v PID | sort -nrk +4 | head"
 #alias topmem="ps -aux --sort -pmem | head"
 
 # 监控进程 CPU，MEM 占用，Mac 不兼容
-alias watch-ps="watch -d -n1 'ps aux --sort -pmem,-pcpu | head -25'"
+alias watch-ps="watch -d -n1 'ps ax -o user,pid,ppid,pgid,ni,tty,stat,pcpu,pmem,start,time,cmd --sort -pcpu,-pmem | head -25'"
 
 # 监控最占用的 CPU 的进程，Mac 兼容
-alias watch-cpu="watch -n1 'ps aux | grep -v PID | sort -nrk +3 | head -25'"
+alias watch-cpu="watch -d -n1 'ps aux | grep -v PID | sort -nrk +3 | head -25'"
 
 # 监控最占用的 MEM 的进程，Mac 兼容
 alias watch-mem="watch -d -n1 'ps aux | grep -v PID | sort -nrk +4 | head -25'"
