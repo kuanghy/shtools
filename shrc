@@ -26,8 +26,8 @@ alias h2='history 20'
 alias h3='history 30'
 
 # 设置 history 记录命令的大小
-export HISTSIZE=25000
-export HISTFILESIZE=25000
+export HISTSIZE=25000       # history 命令显示的条数
+export HISTFILESIZE=25000   # 日志文件记录的最大条数
 export SAVEHIST=10000
 
 # 不要记录相同的命令
