@@ -8,7 +8,8 @@ set -e
 
 watch-grep()
 {
-    cmd="ps aux | grep -v grep | grep '$@'"
+    psa="ps ax -o user,pid,ppid,pgid,ni,tty,stat,pcpu,pmem,start,time,cmd --sort -pcpu,-pmem"
+    cmd="$psa | grep -v grep | grep -E 'USER|$@'"
     watch -d -n1 $cmd
 }
 
