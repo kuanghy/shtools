@@ -262,9 +262,25 @@ function pretty-csv() {
     column -t -s, -n "$@" | less -F -S -X -K
 }
 
+# 添加 PATH 环境变量值
+function add-path-env() {
+    for value in $*; do
+        case ":${PATH}:" in
+            *:"${value}":*)
+                ;;
+            *)
+                export PATH="$value:$PATH"
+                ;;
+        esac
+    done
+}
 
-#### 设置常用环境变量
-export PATH="$HOME/.local/bin:$PATH"
+
+#### 添加用户 PATH 环境
+add-path-env "$HOME/.local/bin"
+
+
+#### 设置 CDPATH 环境变量
 export CDPATH=".:$HOME:$HOME/aboutme:$HOME/Aboutme:$HOME/work:$HOME/Work"
 
 
