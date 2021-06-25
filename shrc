@@ -43,6 +43,7 @@ export HISTIGNORE="cd:cd ..:exit:pwd:ls:ll:l:ls –ltr:history:h1:h2:h3:reset:cl
 alias sudo='sudo '
 
 # 一些常用的 ls 别名
+# alias ls='ls --color=auto'
 alias l='ls -CF'
 alias la='ls -A'
 alias ll='ls -alF'
