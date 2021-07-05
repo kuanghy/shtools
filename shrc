@@ -218,6 +218,15 @@ pick-color() {
     done
 }
 
+# 多次运行同一个命令
+multi-run() {
+    times=$1
+    shift
+    for i in `seq $times`; do
+        $@
+    done
+}
+
 # 生成随机密码
 genpasswd() {
     if [ $# -gt 1 ]; then
