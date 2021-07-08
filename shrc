@@ -71,10 +71,6 @@ alias egrep='egrep --color=auto'
 alias chmod='chmod -v'
 alias chown='chown -v'
 
-# 用超级用户打开文件
-alias svi="sudo vim"
-alias sgedit="sudo gedit"
-
 # 查看命令位置
 alias type="type -a"
 alias which="which -a"
@@ -82,6 +78,13 @@ alias which="which -a"
 # 搜索历史命令
 alias hisg="history | grep"
 alias gh="history | grep"
+
+# 用超级用户打开文件
+alias svi="sudo vim"
+alias sgedit="sudo gedit"
+
+# Emacs 命令简化
+alias em="emacs"
 
 # 搜索进程
 alias psg="ps aux | grep -v grep | grep -i"
