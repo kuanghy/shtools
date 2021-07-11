@@ -20,5 +20,28 @@ wsl --shutdown
 
 在 wsl 中将 init.wsl 移动至 /etc 目录中
 
+## 磁盘挂载等配置
+
+将 wsl.conf 拷贝到 /etc/wsl.conf
+
+## 解决内存占用问题
+
+在 Windows 的用户目录创建 .wslconfig 文件，添加如下内容：
+
+```
+[wsl2]
+processors=8
+memory=8GB
+swap=8GB
+localhostForwarding=true
+```
+
+添加 crontab 清除缓存：
+
+```
+# Clear system cache
+*/30 * * * * root sync; echo 3 > /proc/sys/vm/drop_caches; date > /tmp/drop_caches_last_run
+```
+
 
 *Copyright (c) Huoty, 2021.02.05*
