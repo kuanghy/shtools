@@ -104,7 +104,11 @@ alias websiteget="wget --random-wait -r -p -e robots=off -U mozilla"
 # 显示出哪个应用程序连接到网络
 alias listen="lsof -P -i -n"
 
-# 获取公网IP地址和主机名
+# 获取当前时间戳
+alias timestamp="date +%s"
+
+# 获取公网 IP 地址
+# alias ipaddr="curl ip.sb"
 # alias ipaddr="curl ident.me"
 # alias ipaddr="curl ifconfig.me"
 alias ipaddr="curl cip.cc"
@@ -323,13 +327,14 @@ if [ -x "$(command -v vim)" ]; then
 fi
 
 
-#### 如何可能，则使用更加高级的命令
+#### 如果可能，则使用更加高级的命令
 if [ -x "$(command -v bat)" ]; then
     alias cat="bat -pP"
 fi
 if [ -x "$(command -v exa)" ]; then
     alias ll="exa -al"
 fi
+
 
 #### 包含 z.sh 脚本，实现目录快速跳转
 if [ -f ~/.z.sh ]; then
