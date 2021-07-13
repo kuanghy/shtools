@@ -280,6 +280,14 @@ function pretty-csv() {
     column -t -s, -n "$@" | less -F -S -X -K
 }
 
+function csview() {
+    if [ -f $1 ]; then
+        cat $1 | pretty-csv
+    else
+        pretty-csv "$@"
+    fi
+}
+
 # 添加 PATH 环境变量值
 function add-path-env() {
     for value in $*; do
