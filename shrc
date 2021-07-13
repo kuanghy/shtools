@@ -320,13 +320,13 @@ if [ -x "$(command -v trash)" ]; then
     fi
     alias rm='echo "This is not the command you are looking for."; false'
 else
-    alias rm="rm -i"
+    alias rm="rm -vi"
 fi
 
 
-#### 为了安全，拷贝或移动文件时输出详细信息
-alias mv='mv -i'
-alias cp='cp -i'
+#### 为了安全，拷贝或移动文件时进行确认并输出详细信息
+alias mv='mv -vi'
+alias cp='cp -vi'
 
 
 #### 如果系统中有 vim，则使用其作为默认的编辑器
