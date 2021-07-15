@@ -8,6 +8,9 @@ set -e
 
 tmux_init()
 {
+    # 新建一个后台会话并在第一个窗口运行一个命令
+    #tmux new-session -s "work" -d -n "kict" kict
+
     tmux new-session -s "work" -d -n "local"     # 新建一个后台会话
     tmux new-window -n "other"                   # 开启一个新窗口
     tmux new-window -n                           # 再开启一个新窗口
