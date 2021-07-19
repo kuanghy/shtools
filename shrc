@@ -282,7 +282,11 @@ function pretty-csv() {
 
 function csview() {
     if [ -f $1 ]; then
-        cat $1 | pretty-csv
+        if [[ $1 == *.gz ]]; then
+            zcat $1 | pretty-csv
+        else
+            cat $1 | pretty-csv
+        fi
     else
         pretty-csv "$@"
     fi
