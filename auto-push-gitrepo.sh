@@ -9,6 +9,11 @@ repos=(
     ~/Aboutme/pythonstudy/
 )
 
+function loginfo() {
+    info="$*"
+    echo "[$(date +'%Y-%m-%d %H:%M:%S')] $info"
+}
+
 for repo in ${repos[@]}; do
     git_dir="${repo}/.git"
     if [ ! -d $git_dir ]; then
@@ -16,8 +21,11 @@ for repo in ${repos[@]}; do
     fi
     cd $repo
     commit_msg="update at $(date +%Y%m%d%H%M%S)"
-    echo "[$(date +'%Y-%m-%d %H:%M:%S')] - trying to commit and push repo ${repo}"
-    git add -A && git commit -am "$commit_msg" && \
-        git pull origin `git rev-parse --abbrev-ref HEAD` && \
-        git remote | xargs -L1 -I$ git push $
+    current_branch=$(git rev-parse --abbrev-ref HEAD)
+    loginfo "trying to commit repo ${repo} branch ${current_branch}"
+    git add -A && git commit -am "$commit_msg"
+    loginfo "trying to pull repo ${repo} branch ${current_branch}"
+    git pull origin $current_branch
+    loginfo "trying to push repo ${repo} branch ${current_branch}"
+    git remote | xargs -L1 -I{} git push {} ${current_branch}
 done
