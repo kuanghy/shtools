@@ -447,9 +447,9 @@ if [[ $SHELL == *'zsh' ]]; then
     unsetopt share_history
 
     # 让 history 命令输出执行的时间
-    alias h1='history -i -10'
-    alias h2='history -i -20'
-    alias h3='history -i -30'
-    alias gh='history -i | grep'
-    alias hisg='history -i | grep'
+    alias h1='fc -il -10'
+    alias h2='fc -il -20'
+    alias h3='fc -il -30'
+    alias gh='fc -il | grep'
+    alias hisg='fc -il | grep'
 fi
