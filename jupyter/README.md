@@ -1,6 +1,13 @@
 Jupyter 相关的配置
 ========
 
+安装配置文件：
+
+```
+cp ipython_config.py ~/.ipython/profile_default/
+cp startup-00-init.py ~/.ipython/profile_default/startup/00-init.py
+```
+
 安装内核：
 
 ```
