@@ -307,6 +307,7 @@ function add-path-env() {
 
 
 #### 添加用户 PATH 环境
+add-path-env "$HOME/bin"
 add-path-env "$HOME/.local/bin"
 
 
