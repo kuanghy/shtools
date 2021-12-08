@@ -305,6 +305,15 @@ function add-path-env() {
     done
 }
 
+# 让 cling 可以直接运行一个文件
+function kling() {
+    if [ -f $1 ]; then
+        cat $1 | cling --nologo
+    else
+        cling $*
+    fi
+}
+
 
 #### 添加用户 PATH 环境
 add-path-env "$HOME/bin"
