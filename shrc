@@ -142,6 +142,9 @@ alias watch-cpu="watch -d -n1 'ps aux | grep -v PID | sort -nrk +3 | head -25'"
 # 监控最占用的 MEM 的进程，Mac 兼容
 alias watch-mem="watch -d -n1 'ps aux | grep -v PID | sort -nrk +4 | head -25'"
 
+# 显示进程树
+alias pstree2="ps axjf"
+
 # 产生十六进制随机数字符串
 alias hexstr="openssl rand -hex"
 # help: hexstr 16
