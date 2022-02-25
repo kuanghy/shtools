@@ -10,7 +10,7 @@ wsl --list --verbose
 # 设置默认体系为 wsl2
 wsl --set-default-version 2
 
-#终止所有 WSL 实例
+# 终止所有 WSL 实例
 wsl --shutdown
 ```
 
@@ -42,6 +42,5 @@ localhostForwarding=true
 # Clear system cache
 */30 * * * * root sync; echo 3 > /proc/sys/vm/drop_caches; date > /tmp/drop_caches_last_run
 ```
-
 
 *Copyright (c) Huoty, 2021.02.05*
