@@ -43,4 +43,20 @@ localhostForwarding=true
 */30 * * * * root sync; echo 3 > /proc/sys/vm/drop_caches; date > /tmp/drop_caches_last_run
 ```
 
+## 备份与还原
+
+```
+# 列出所有安装的版本
+wsl -l -v
+
+# 停止正在运行的发行版
+wsl -t ubuntu
+
+# 导出发行版
+wsl --export ubuntu-20.04 D:\WSL\ubuntu-20.04.tar
+
+# 导入发行版
+wsl --import ubuntu-20.04 D:\WSL\ubuntu-20.04\ D:\WSL\ubuntu-20.04.tar
+```
+
 *Copyright (c) Huoty, 2021.02.05*
