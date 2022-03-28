@@ -4,6 +4,10 @@
 # CreateTime: 2019-12-19 17:10:54
 # Script starts from here:
 
-/etc/init.d/cron $1
-/etc/init.d/ssh $1
-/etc/init.d/supervisor $1
+{
+    date
+
+    /etc/init.d/cron $1
+    /etc/init.d/ssh $1
+    /etc/init.d/supervisor $1
+} 2>&1 | tee -a /var/log/init-wsl.log
