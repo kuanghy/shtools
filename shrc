@@ -156,7 +156,7 @@ alias tf='tail -F'
 alias mnt='mount | grep -E ^/dev | column -t'
 
 # 使用 rsync 代替 cp 拷贝文件
-alias cpv='rsync -aHt --progress'
+alias cpv='rsync -aHv --progress'
 
 # 转换 Windows 新建文件到 unix 可识别的格式
 alias wintext2unix='iconv -f UTF-16LE -t UTF-8'
