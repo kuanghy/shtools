@@ -13,6 +13,7 @@ from pprint import pprint as pp
 from datetime import (
     datetime as DateTime,
     date as Date,
+    timedelta as TimeDelta,
 )
 
 
@@ -32,7 +33,7 @@ np = numpy = _import_module("numpy")
 
 
 if pandas:
-    pd.set_option('precision', 12)
+    pd.set_option('display.precision', 12)
     pd.set_option('display.max_columns', 50)
     pd.set_option('display.max_rows', 200)
     pd.set_option('display.max_colwidth', 100)

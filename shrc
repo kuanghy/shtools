@@ -36,6 +36,12 @@ export HISTCONTROL=ignoredups
 # 让 history 在存储时忽略指定指令
 export HISTIGNORE="cd:cd ..:exit:pwd:ls:ll:l:ls –ltr:history:h1:h2:h3:reset:clear"
 
+# 保存当前会话的历史命令
+save-history="history -a"
+
+# 从历史命令记录文件加载命令到当前会话的历史命令列表
+load-history="history -r"
+
 
 #### Alias command
 
@@ -374,7 +380,6 @@ alias cg='cd `git rev-parse --show-toplevel`'  # 回到项目的顶级目录
 #### Python 相关设置
 export PYTHONIOENCODING="UTF-8"  # 标准流的编码
 export PYTHONUNBUFFERED=1        # 不缓冲标准流
-# export PYTHONOPTIMIZE=1    # 优化字节码
 export PIP_DEFAULT_TIMEOUT=60    # Pip 的超时时间
 
 alias greppy="find . -name '*.py' | xargs grep -n --color"  # 在 Python 代码中查找
@@ -449,7 +454,7 @@ if [[ $SHELL == *'zsh' ]]; then
     # 消除历史记录中的重复条目
     setopt hist_ignore_dups
 
-    # 忽略已空格开始的命令，不添加到历史命令记录中
+    # 忽略以空格开始的命令，不添加到历史命令记录中
     setopt hist_ignore_space
 
     # 一些简单的命令不记录入历史命令中
@@ -465,4 +470,9 @@ if [[ $SHELL == *'zsh' ]]; then
     alias h3='fc -il -30'
     alias gh='fc -il | grep'
     alias hisg='fc -il | grep'
+
+    # 保存当前会话的历史命令
+    save-history="fc -IA"
+    # 从历史命令记录文件加载命令到当前会话的历史命令列表
+    load-history="fc -IR"
 fi
