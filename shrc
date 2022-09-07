@@ -37,10 +37,10 @@ export HISTCONTROL=ignoredups
 export HISTIGNORE="cd:cd ..:exit:pwd:ls:ll:l:ls –ltr:history:h1:h2:h3:reset:clear"
 
 # 保存当前会话的历史命令
-save-history="history -a"
+alias save-history="history -a"
 
 # 从历史命令记录文件加载命令到当前会话的历史命令列表
-load-history="history -r"
+alias load-history="history -r"
 
 
 #### Alias command
@@ -472,7 +472,7 @@ if [[ $SHELL == *'zsh' ]]; then
     alias hisg='fc -il | grep'
 
     # 保存当前会话的历史命令
-    save-history="fc -IA"
+    alias save-history="fc -IA"
     # 从历史命令记录文件加载命令到当前会话的历史命令列表
-    load-history="fc -IR"
+    alias load-history="fc -IR"
 fi
