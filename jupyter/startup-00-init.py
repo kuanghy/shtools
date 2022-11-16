@@ -37,3 +37,10 @@ if pandas:
     pd.set_option('display.max_columns', 50)
     pd.set_option('display.max_rows', 200)
     pd.set_option('display.max_colwidth', 100)
+
+
+# load autoimport extension: https://github.com/anntzer/ipython-autoimport
+try:
+    get_ipython().run_line_magic('load_ext', 'ipython_autoimport')
+except Exception:
+    pass
