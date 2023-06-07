@@ -28,6 +28,19 @@ def _import_module(name):
         return None
 
 
+class _suppress(object):
+
+    def __init__(self, *exceptions):
+        self.exceptions = exceptions
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        if exc_type is not None and issubclass(exc_type, self.exceptions):
+            return True
+
+
 pd = pandas = _import_module("pandas")
 np = numpy = _import_module("numpy")
 
@@ -40,7 +53,9 @@ if pandas:
 
 
 # load autoimport extension: https://github.com/anntzer/ipython-autoimport
-try:
-    get_ipython().run_line_magic('load_ext', 'ipython_autoimport')
-except Exception:
-    pass
+with _suppress(Exception):
+    get_ipython().run_line_magic('load_ext', 'ipython_autoimport')  # noqa
+
+# load Cython extension, depend packages: cython, ipython-cython
+with _suppress(Exception):
+    get_ipython().run_line_magic('load_ext', 'Cython')
