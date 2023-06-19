@@ -384,7 +384,7 @@ export PIP_DEFAULT_TIMEOUT=60    # Pip 的超时时间
 
 alias greppy="find . -name '*.py' | xargs grep -n --color"  # 在 Python 代码中查找
 alias ackpy="ack --python"
-alias pytest="py.test -xvvls"
+alias pytest="py.test -ls"
 
 # 启动一个简单的 HTTP 服务
 if [ -x "$(command -v python)" ]; then
