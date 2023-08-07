@@ -59,4 +59,13 @@ wsl --export ubuntu-20.04 D:\WSL\ubuntu-20.04.tar
 wsl --import ubuntu-20.04 D:\WSL\ubuntu-20.04\ D:\WSL\ubuntu-20.04.tar
 ```
 
+## 解决时间同步问题
+
+设置定时任务同步时间
+
+```
+# Sync time
+0 * * * *  root  ntpdate -u cn.ntp.org.cn
+```
+
 *Copyright (c) Huoty, 2021.02.05*
