@@ -3,11 +3,20 @@ Oh my zsh 配置参考
 
 ## 主题安装
 
-拷贝 konyon.zsh-theme 或者 konyonm.zsh-theme 到 oh-my-zsh 主题目录，如 /home/huoty/.oh-my-zsh/themes/
-或者只做软连接，然后修改主题配置项：
+拷贝 konyon.zsh-theme 或者 konyonm.zsh-theme 到 oh-my-zsh 主题目录，如 ~/.oh-my-zsh/custom/themes 或者只做软连接，然后修改主题配置项：
 
 ```
 ZSH_THEME="konyon"
+```
+
+设置本地与 ssh 登录用不同的主题：
+
+```
+if [[ -n $SSH_CONNECTION ]]; then
+    export ZSH_THEME='konyonm'
+else
+    export ZSH_THEME='konyon'
+fi
 ```
 
 ## 配置参考
@@ -83,3 +92,16 @@ Docker 参数补全
 - **supervisor**
 
 Supervisor 参数补全
+
+
+- **zsh-syntax-highlighting**
+
+高亮常用命令，安装：
+
+> git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
+- **zsh-autosuggestions**
+
+命令建议提示，安装
+
+> git clone git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
