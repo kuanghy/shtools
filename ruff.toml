@@ -1,0 +1,74 @@
+# Python ruff configuration
+
+# Enable the pycodestyle (`E`) and Pyflakes (`F`) rules by default.
+# Unlike Flake8, Ruff doesn't enable pycodestyle warnings (`W`) or
+# McCabe complexity (`C901`) by default.
+select = ["E", "F", "W", "D", "C", "N"]
+
+# Ignore partial errors
+ignore = [
+    'C901',
+    'D100', 'D101', 'D102', 'D103', 'D104', 'D105', 'D107', 'D200', 'D202',
+    'D203', 'D205', 'D210', 'D212', 'D213', 'D300', 'D400', 'D401', 'D402',
+    'D404', 'D415',
+    'E402', 'E501', 'E731',
+    'N802', 'N806'
+]
+
+# Enable preview features
+preview = true
+
+# Assume Python 3.11
+target-version = "py311"
+
+# Exclude a variety of commonly ignored directories.
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    ".vscode",
+    "__pypackages__",
+    "__pycache__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "sdist",
+    "node_modules",
+    "venv"
+]
+
+# The line length to use when enforcing long-lines violations.
+line-length = 100
+
+# The tabulation size to calculate line length.
+tab-size = 4
+
+# Builtins to treat as defined references, in addition to the system builtins.
+builtins = ["_"]
+
+# Enumerate all fixed violations.
+show-fixes = true
+
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+# The file pattern to rule codes or prefixes to exclude.
+[per-file-ignores]
+"__init__.py" = ["E402"]
+"**/{tests,docs,tools}/*" = ["E402"]
+
+
+[pycodestyle]
+max-doc-length = 120
