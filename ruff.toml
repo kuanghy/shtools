@@ -6,6 +6,7 @@
 select = ["E", "F", "W", "D", "C", "N"]
 
 # Ignore partial errors
+# Rules refer: https://docs.astral.sh/ruff/rules/
 ignore = [
     'C901',
     'D100', 'D101', 'D102', 'D103', 'D104', 'D105', 'D107', 'D200', 'D202',
@@ -69,6 +70,6 @@ dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 "__init__.py" = ["E402"]
 "**/{tests,docs,tools}/*" = ["E402"]
 
-
+# Pycodestyle settings
 [pycodestyle]
 max-doc-length = 120
