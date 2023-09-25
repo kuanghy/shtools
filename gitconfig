@@ -1,31 +1,42 @@
 [user]
-	name = Huayong Kuang
-	email = sudohuoty@163.com
+    name = Huayong Kuang
+    email = sudohuoty@163.com
 [credential]
-	helper = store
+    helper = store
 [core]
-	editor = vim
+    editor = vim
     autocrlf = input
     safecrlf = true
-	filemode = true
-	quotepath = false
-	excludesfile = ~/.gitignore
+    filemode = true
+    quotepath = false
+    excludesfile = ~/.gitignore
 [color]
     ui = true
 [branch]
-	autosetuprebase = always
+    autosetuprebase = always
 [pull]
-	rebase = true
+    rebase = true
 [merge]
     ff = no
 [rebase]
-	stat = true
+    stat = true
 [push]
-	default = simple
+    default = simple
 [diff]
     tool = vimdiff
+    context = 5
 [difftool]
     prompt = false
+[http]
+    postBuffer = 524288000
+    sslVerify = false
+[https]
+    postBuffer = 524288000
+    sslVerify = false
+[show]
+    context = 5
+[log]
+    context = 5
 [alias]
     df = diff
     dfc = diff --cached
@@ -82,7 +93,3 @@
     psar = !git remote | xargs -t -I$ git push $ `git cbr`
     wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset --hard HEAD~1
     alias = config --get-regexp alias
-[http]
-	postBuffer = 524288000
-[https]
-	postBuffer = 524288000
